@@ -24,9 +24,23 @@ This project draws heavily on those principles, applying them to large-scale rea
 [**See also CzechFOI-DRATE_EXAM project for Investigation of the Bias**](https://github.com/gitfrid/CzechFOI-DRATE_EXAM/tree/main)
 
  _________________________________________
-## Comparison vaccinated vs. unvaccinated with eliminated bias: simulation expected HR~1 vs. real Czech data 
+## Comparison vaccinated vs. unvaccinated with eliminated bias - using different Methodes  
 
-<br>Phyton script [) .py]()  Results: [Results TXT]()
+---
+### FW) cox time-varying Methode 
+Phyton script [FW) cox time-varying.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FW%29%20cox%20time-varying.py)
+<br>
+<br>**Simulated data (expected HR~1 / no effect placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FW%29%20cox%20time-varying/FW-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20AG70%20cox%20time-varying.TXT)
+<br>There is still a slight distortion, as vx and uvx should theoretically overlap horizontally. 
+<br>
+<img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FW)%20cox%20time-varying/FW-FG)%20case3_sim_deaths_sim_real_doses_with_constraint%20AG70%20cox%20time-varying.png width="1280" height="auto">
+<br>
+
+<br>**Vs. real Czech data** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FW%29%20cox%20time-varying/FW%29%20Vesely_106_202403141131_AG70%20cox%20time-varying.TXT)
+<br>REal dadta showing only a very small effect, which corresponds approximately to the magnitude of the residual distortion of the simulated data.
+<br>
+<img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FW%29%20cox%20time-varying/FW%29%20Vesely_106_202403141131_AG70%20cox%20time-varying.png width="1280" height="auto">
+<br>
 _________________________________________
 
 ## The Solution of Non-Random Boundary Condition Bias
