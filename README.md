@@ -23,6 +23,12 @@ This project draws heavily on those principles, applying them to large-scale rea
 
 [**See also CzechFOI-DRATE_EXAM project for Investigation of the Bias**](https://github.com/gitfrid/CzechFOI-DRATE_EXAM/tree/main)
 
+ _________________________________________
+### Comparison vaccinated vs. unvaccinated with eliminated bias: simulation vs. real data 
+
+<br>Phyton script [AF) simulate deaths doses curves.py](https://github.com/gitfrid/CzechFOI-DRATE_EXAM/blob/main/Py%20Scripts/AF%29%20simulate%20deaths%20doses%20curves.py)  Cox Results: [Cox Results TXT](https://github.com/gitfrid/CzechFOI-DRATE_EXAM/tree/main/Plot%20Results/AE%29%20Cox%20compare%20vx%20uvx/AE-AF%29)
+_________________________________________
+
 ## The Solution of Non-Random Boundary Condition Bias
 
 This is what **Hernán & Robins** say:
@@ -84,5 +90,3 @@ That means:
 ### Don’t condition on future information:
 - You must **not use future events** (e.g., dose received later) to define exposure status at earlier times.
 
-
- 
