@@ -175,7 +175,7 @@ _________________________________________
 **Notes**
 - This model uses **person-day data**, expanding individual records by time.
 - A **Poisson model with log link** is typically appropriate for **rare event count data** like deaths per day.
-- The null result here may indicate **insufficient effect** in the simulated data, or structural bias due to **model or data design**.
+- The null result here may indicate **insufficient effect** in the simulated data (HR ~ 1), or structural bias due to **model or data design**.
 ---
 
 ### Simulated Deaths with random real dose schedule AG70 (expected HR~1 / no effect-placebo) Poisson Methode
