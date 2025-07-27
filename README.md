@@ -41,6 +41,7 @@ Phyton script [FW) cox time-varying.py](https://github.com/gitfrid/CzechFOI-DRAT
 <br>
 <img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FW%29%20cox%20time-varying/FW%29%20Vesely_106_202403141131_AG70%20cox%20time-varying.png width="1280" height="auto">
 <br>
+_________________________________________
 
 ### FW) CoX Time-Varying Survival Analysis Results:
 
@@ -64,14 +65,13 @@ Model Convergence Converged after 5 iterations
 | `t`              | -0.00097 | 0.999          | 0.999 – 0.999       | ≈ 0            | Slightly decreasing baseline hazard    |
 | `vaccinated_time`| -0.00048 | 0.9995         | 0.9995 – 0.9996     | 7.3e-130       | Very mild waning over time             |
 
----
 
 ### Key Metrics
 
 - **Vaccine Effectiveness (VE):** `1 - HR = 1 - 0.863 = 13.7%` **still small bias present as expected HR is ~1**
 - **Statistical significance:** all covariates are **highly significant** (p < 10⁻³⁰)
 
----
+--
 
 ### vs. Real Czech data: 
 
@@ -85,11 +85,10 @@ Model Convergence Converged after 5 iterations
 | `t`              | -0.00094 | 0.999          | 0.999 – 0.999       | ≈ 0              | Slight baseline decline over time     |
 | `vaccinated_time`| -0.00046 | 0.9995         | 0.9995 – 0.9996     | 1.44e-118        | Very mild waning effect               |
 
----
 
 ### Key Metrics
 
-- **Vaccine Effectiveness (VE):** `1 - HR = 1 - 0.926 = 7.4%` **but still small bias present as the simulated data show**
+- **Vaccine Effectiveness (VE):** `1 - HR = 1 - 0.926 = 7.4%` **probably because still small bias present as the simulated data show**
 - **All covariates statistically significant** at extremely low p-values (p < 1e-10)
 
 _________________________________________
@@ -122,6 +121,60 @@ Phyton script [FZ) poisson.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/
 <br>
 <img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FZ%29%20poisson/FZ%29%20real%20data%20Vesely_106_202403141131_AG70%20poisson_KM_survival.png width="1280" height="auto">
 <br>
+_________________________________________
+
+## FZ) Poisson Regression
+
+**Study Period sart date 2020-01-01 until END_MEASURE 1095 days**
+
+**Notes**
+- This model uses **person-day data**, expanding individual records by time.
+- A **Poisson model with log link** is typically appropriate for **rare event count data** like deaths per day.
+- The null result here may indicate **insufficient effect** in the simulated data, or structural bias due to **model or data design**.
+---
+
+### Simulated Deaths with random real dose schedule AG70 (expected HR~1 / no effect-placebo) Poisson Methode
+
+**PerfectSeparationWarning**:  
+  `Perfect separation or prediction detected, parameter may not be identified.`  
+  This indicates that the model perfectly predicts the outcome for some observations — a sign of either overfitting or a non-informative predictor.
+
+### Coefficients and IRRs
+
+| Covariate   | Coef        | IRR (exp(coef)) | 95% CI        | p-value | Interpretation |
+|-------------|-------------|------------------|---------------|---------|----------------|
+| `const`     | ≈ 0         | **1.000**        | [1.000, 1.000]| 1.000   | No baseline death risk change |
+| `vaccinated`| ≈ 0         | **1.000**        | [1.000, 1.000]| 1.000   | **No effect detected**        |
+| `age_c`     | 0           | –                | [0, 0]        | NaN     | Possibly constant or missing  |
+
+### Interpretation
+
+- **No difference** in death incidence between vaccinated and unvaccinated individuals was detected in this simulation.
+- The coefficient for `vaccinated` is extremely close to zero, with an **Incidence Rate Ratio (IRR) of 1.000**, meaning **no relative change in death rate**.
+- **Perfect separation** warning suggests either:
+  - There is no variation in the outcome with respect to predictors.
+  - The data or simulation design causes deterministic outcomes (e.g., deaths assigned in a fixed or rule-based way).
+- `age_c` was dropped due to data only for AG70
+
+--
+
+### vs. Real Czech data AG70 Poisson Methode
+
+### Coefficients and Incidence Rate Ratios (IRRs)
+
+| Covariate     | Coef     | IRR (exp(coef)) | 95% CI IRR         | p-value | Interpretation |
+|---------------|----------|------------------|---------------------|---------|----------------|
+| `const`       | -0.0003  | ~1.000           | [0.999, 1.000]      | 0.009   | Slightly lower baseline risk |
+| `vaccinated`  | -0.0013  | **0.999**        | [0.998, 0.999]      | <0.001  | **Statistically significant reduction** in death rate for vaccinated individuals |
+| `age_c`       | 0        | –                | [0, 0]              | NaN     | Possibly dropped due to no variation or collinearity |
+
+
+### Interpretation
+
+- **Vaccinated individuals** show a **statistically significant** but **very small reduction** in daily death rates compared to unvaccinated.
+  - **IRR = 0.999** → about **0.1% lower** death rate.
+- The **pseudo R² is low (0.0335)**, indicating that vaccination explains only a small portion of the variability in death counts.
+- The model converged after 5 iterations with valid diagnostics.
 _________________________________________
 
 ## The Solution of Non-Random Boundary Condition Bias
