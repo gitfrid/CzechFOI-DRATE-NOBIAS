@@ -1,0 +1,19 @@
+END_MEASURE (max death day): 1095
+Iteration 1: norm_delta = 3.02e-01, step_size = 0.9500, log_lik = -92437.70726, newton_decrement = 1.42e+03, seconds_since_start = 23.1
+Iteration 2: norm_delta = 1.69e-02, step_size = 0.9500, log_lik = -91016.16888, newton_decrement = 4.29e+00, seconds_since_start = 47.2
+Iteration 3: norm_delta = 8.49e-04, step_size = 0.9500, log_lik = -91011.88736, newton_decrement = 1.09e-02, seconds_since_start = 74.0
+Iteration 4: norm_delta = 4.47e-05, step_size = 1.0000, log_lik = -91011.87652, newton_decrement = 2.72e-05, seconds_since_start = 97.5
+Iteration 5: norm_delta = 5.16e-11, step_size = 1.0000, log_lik = -91011.87650, newton_decrement = 3.58e-17, seconds_since_start = 119.9
+Convergence completed after 5 iterations.
+                     coef  exp(coef)  se(coef)  coef lower 95%  coef upper 95%  exp(coef) lower 95%  exp(coef) upper 95%  cmp to          z              p    -log2(p)
+covariate                                                                                                                                                             
+vaccinated      -0.077287   0.925625  0.012078       -0.100958       -0.053615             0.903971             0.947797     0.0  -6.399161   1.562333e-10   32.575579
+t               -0.000935   0.999065  0.000020       -0.000975       -0.000896             0.999026             0.999104     0.0 -46.663486   0.000000e+00         inf
+vaccinated_time -0.000464   0.999536  0.000020       -0.000503       -0.000425             0.999497             0.999575     0.0 -23.150438  1.439049e-118  391.462399
+
+Hazard Ratios and 95% Confidence Intervals:
+vaccinated: HR = 0.926 (95% CI: 0.904 - 0.948)
+t: HR = 0.999 (95% CI: 0.999 - 0.999)
+vaccinated_time: HR = 1.000 (95% CI: 0.999 - 1.000)
+Life years saved (vaccinated vs unvaccinated) up to day 734.0: 0.0154 years
+Plot saved to C:\CzechFOI-DRATE-NOBIAS\Plot Results\FW) cox time-varying\FW) Vesely_106_202403141131_AG70 cox time-varying.html with life years saved annotation

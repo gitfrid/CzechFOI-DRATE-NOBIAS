@@ -1,0 +1,32 @@
+END_MEASURE (max death day): 1095
+<lifelines.CoxTimeVaryingFitter: fitted with 481278 periods, 136526 subjects, 7863 events>
+         event col = 'event'
+         penalizer = 0.1
+number of subjects = 136526
+ number of periods = 481278
+  number of events = 7863
+partial log-likelihood = -92703.26
+  time fit was run = 2025-07-26 22:11:41 UTC
+
+---
+           coef exp(coef)  se(coef)  coef lower 95%  coef upper 95% exp(coef) lower 95% exp(coef) upper 95%
+covariate                                                                                                  
+dose_1    -0.03      0.97      0.01           -0.05           -0.01                0.95                0.99
+dose_2    -0.09      0.92      0.01           -0.11           -0.06                0.90                0.94
+dose_3    -0.03      0.97      0.01           -0.05           -0.01                0.95                0.99
+dose_4    -0.02      0.98      0.02           -0.06            0.02                0.95                1.02
+dose_5    -0.03      0.97      0.62           -1.25            1.19                0.29                3.27
+
+           cmp to     z      p  -log2(p)
+covariate                               
+dose_1       0.00 -2.90 <0.005      8.05
+dose_2       0.00 -8.07 <0.005     50.30
+dose_3       0.00 -2.79   0.01      7.58
+dose_4       0.00 -0.94   0.35      1.52
+dose_5       0.00 -0.05   0.96      0.06
+---
+Partial AIC = 185416.53
+log-likelihood ratio test = 80.20 on 5 df
+-log2(p) of ll-ratio test = 50.22
+
+Plot saved to: C:\CzechFOI-DRATE-NOBIAS\Plot Results\FX) TTE per dose\FX-FG) case3_sim_deaths_sim_real_doses_with_constraint AG70 TTE.html

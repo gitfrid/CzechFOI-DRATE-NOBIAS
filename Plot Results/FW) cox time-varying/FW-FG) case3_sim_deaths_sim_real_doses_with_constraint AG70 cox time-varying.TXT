@@ -1,0 +1,19 @@
+END_MEASURE (max death day): 1095
+Iteration 1: norm_delta = 3.20e-01, step_size = 0.9500, log_lik = -92790.65943, newton_decrement = 1.61e+03, seconds_since_start = 25.2
+Iteration 2: norm_delta = 1.67e-02, step_size = 0.9500, log_lik = -91186.84153, newton_decrement = 4.22e+00, seconds_since_start = 50.2
+Iteration 3: norm_delta = 8.40e-04, step_size = 0.9500, log_lik = -91182.63466, newton_decrement = 1.06e-02, seconds_since_start = 76.6
+Iteration 4: norm_delta = 4.42e-05, step_size = 1.0000, log_lik = -91182.62404, newton_decrement = 2.66e-05, seconds_since_start = 101.5
+Iteration 5: norm_delta = 4.62e-11, step_size = 1.0000, log_lik = -91182.62401, newton_decrement = 2.92e-17, seconds_since_start = 134.9
+Convergence completed after 5 iterations.
+                     coef  exp(coef)  se(coef)  coef lower 95%  coef upper 95%  exp(coef) lower 95%  exp(coef) upper 95%  cmp to          z              p    -log2(p)
+covariate                                                                                                                                                             
+vaccinated      -0.146855   0.863420  0.012037       -0.170447       -0.123262             0.843288             0.884032     0.0 -12.200161   3.102092e-34  111.312314
+t               -0.000968   0.999033  0.000020       -0.001007       -0.000929             0.998993             0.999072     0.0 -48.295673   0.000000e+00         inf
+vaccinated_time -0.000484   0.999516  0.000020       -0.000523       -0.000445             0.999477             0.999555     0.0 -24.245752  7.330923e-130  428.976657
+
+Hazard Ratios and 95% Confidence Intervals:
+vaccinated: HR = 0.863 (95% CI: 0.843 - 0.884)
+t: HR = 0.999 (95% CI: 0.999 - 0.999)
+vaccinated_time: HR = 1.000 (95% CI: 0.999 - 1.000)
+Life years saved (vaccinated vs unvaccinated) up to day 734.0: 0.0296 years
+Plot saved to C:\CzechFOI-DRATE-NOBIAS\Plot Results\FW) cox time-varying\FW-FG) case3_sim_deaths_sim_real_doses_with_constraint AG70 cox time-varying.html with life years saved annotation

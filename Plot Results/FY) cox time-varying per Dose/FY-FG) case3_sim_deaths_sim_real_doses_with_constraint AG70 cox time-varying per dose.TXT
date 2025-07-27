@@ -1,0 +1,12 @@
+END_MEASURE (max death day): 1095
+Iteration 1: norm_delta = 1.45e-01, step_size = 0.9500, log_lik = -92743.36227, newton_decrement = 5.92e+02, seconds_since_start = 27.0
+Iteration 2: norm_delta = 7.96e-03, step_size = 0.9500, log_lik = -92150.69934, newton_decrement = 1.78e+00, seconds_since_start = 55.0
+Iteration 3: norm_delta = 4.00e-04, step_size = 0.9500, log_lik = -92148.92371, newton_decrement = 4.49e-03, seconds_since_start = 83.6
+Iteration 4: norm_delta = 2.11e-05, step_size = 1.0000, log_lik = -92148.91923, newton_decrement = 1.12e-05, seconds_since_start = 110.1
+Iteration 5: norm_delta = 1.43e-11, step_size = 1.0000, log_lik = -92148.91922, newton_decrement = 5.21e-18, seconds_since_start = 136.0
+Convergence completed after 5 iterations.
+               coef  exp(coef)  se(coef)  coef lower 95%  coef upper 95%  exp(coef) lower 95%  exp(coef) upper 95%  cmp to          z              p   -log2(p)
+covariate                                                                                                                                                      
+dose_num  -0.032390   0.968129  0.003377       -0.039008       -0.025772             0.961743             0.974558     0.0  -9.592018   8.637887e-22   69.97174
+t         -0.000574   0.999426  0.000017       -0.000608       -0.000540             0.999392             0.999460     0.0 -33.108844  2.216960e-240  796.11416
+Plot saved to C:\CzechFOI-DRATE-NOBIAS\Plot Results\FY) cox time-varying per Dose\FY-FG) case3_sim_deaths_sim_real_doses_with_constraint AG70 cox time-varying per dose.html with survival curves stratified by dose number

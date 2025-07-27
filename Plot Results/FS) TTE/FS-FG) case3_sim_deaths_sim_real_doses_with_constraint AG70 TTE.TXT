@@ -1,0 +1,26 @@
+END_MEASURE (max death day): 1095
+c:\CzechFOI-DRATE-NOBIAS\Py Scripts\FS) TTE.py:123: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '[0.5 0.5 0.5 0.5]' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  tte_df.loc[
+<lifelines.CoxTimeVaryingFitter: fitted with 250117 periods, 136530 subjects, 7867 events>
+         event col = 'event'
+         penalizer = 0.1
+number of subjects = 136530
+ number of periods = 250117
+  number of events = 7867
+partial log-likelihood = -92668.62
+  time fit was run = 2025-07-26 22:05:24 UTC
+
+---
+            coef exp(coef)  se(coef)  coef lower 95%  coef upper 95% exp(coef) lower 95% exp(coef) upper 95%
+covariate                                                                                                   
+vaccinated -0.19      0.83      0.01           -0.21           -0.16                0.81                0.85
+
+            cmp to      z      p  -log2(p)
+covariate                                 
+vaccinated    0.00 -15.65 <0.005    180.94
+---
+Partial AIC = 185339.25
+log-likelihood ratio test = 244.07 on 1 df
+-log2(p) of ll-ratio test = 180.36
+
+Interactive survival curves plot saved to C:\CzechFOI-DRATE-NOBIAS\Plot Results\FS) TTE\FS-FG) case3_sim_deaths_sim_real_doses_with_constraint AG70 TTE.html
