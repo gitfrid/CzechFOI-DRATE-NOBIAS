@@ -66,6 +66,22 @@ That means:
 - If you randomly assigned doses to the entire population, it would eliminate the bias — but this would destroy the real grouping you actually want to compare.
 - Therefore, you need to find another way to eliminate the bias from the raw data — and **Hernán & Robins** showed how to do this.
 
+## Essentials to Eliminate the Bias
+
+### Use person-time analysis instead of person-group comparison:
+- Don’t divide individuals into **"vaccinated"** vs. **"unvaccinated"** groups.
+- Instead, **split each individual's time** into **vaccinated** and **unvaccinated periods**.
+
+### Ensure that follow-up time is correctly aligned:
+- The **start of follow-up** must be defined equally for all individuals (e.g., a shared baseline date or event).
+- Avoid **immortal time bias** — no one should be counted as "at risk" before they are actually at risk.
+
+### Allow individuals to contribute to both exposure states:
+- A person can contribute **unvaccinated person-time** before receiving a dose and **vaccinated person-time** afterward.
+- This ensures comparisons are **within the same population**, not between fundamentally different groups.
+
+### Don’t condition on future information:
+- You must **not use future events** (e.g., dose received later) to define exposure status at earlier times.
 
 
  
