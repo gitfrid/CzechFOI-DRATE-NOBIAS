@@ -1,2 +1,29 @@
 END_MEASURE (max death day): 1095
 Expanding person-day data... This may take some time for large data.
+C:\Program Files\Python312\Lib\site-packages\statsmodels\genmod\generalized_linear_model.py:1342: PerfectSeparationWarning: Perfect separation or prediction detected, parameter may not be identified
+  warnings.warn(msg, category=PerfectSeparationWarning)
+C:\Program Files\Python312\Lib\site-packages\statsmodels\genmod\generalized_linear_model.py:1342: PerfectSeparationWarning: Perfect separation or prediction detected, parameter may not be identified
+  warnings.warn(msg, category=PerfectSeparationWarning)
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:                 deaths   No. Observations:                 1831
+Model:                            GLM   Df Residuals:                     1829
+Model Family:                 Poisson   Df Model:                            1
+Link Function:                    Log   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -11630.
+Date:                Sun, 27 Jul 2025   Deviance:                   1.2897e-09
+Time:                        13:08:07   Pearson chi2:                 3.82e-23
+No. Iterations:                     5   Pseudo R-squ. (CS):              0.000
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const      -4.329e-19      0.000  -3.81e-15      1.000      -0.000       0.000
+vaccinated  1.326e-17      0.000   7.97e-14      1.000      -0.000       0.000
+age_c               0          0        nan        nan           0           0
+==============================================================================
+
+Incidence Rate Ratios (IRRs):
+Intercept: 1.000
+Vaccinated vs Unvaccinated: 1.000 (95% CI: 1.000 - 1.000)
+KM survival plot saved to C:\CzechFOI-DRATE-NOBIAS\Plot Results\FZ) poisson\FZ-FG) case3_sim_deaths_sim_real_doses_with_constraint AG70 poisson_KM_survival.html
