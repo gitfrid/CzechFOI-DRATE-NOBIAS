@@ -65,7 +65,7 @@ Because:
 That means:
 
 - It doesn’t help to randomly assign doses only to the vaccinated group — the bias is already introduced by the way vaccinated and unvaccinated groups were selected.
-- If you randomly assigned doses to the entire population, it would eliminate the bias — but this would destroy the real grouping you actually want to compare.
+- If you randomly assigned doses to the entire population, it would eliminate the bias — but this would destroy the real vx/uvx grouping you actually want to compare.
 - Therefore, you need to find another way to eliminate the bias from the raw data — and **Hernán & Robins** showed how to do this.
   
 _________________________________________
