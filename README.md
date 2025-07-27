@@ -242,7 +242,7 @@ ____________________________________________________
 - You must **not use future events** (e.g., dose received later) to define exposure status at earlier times.
 
 _________________________________________
-### Software Requirements:
+## Software Requirements:
 
 The aggregation is handled directly by Python scripts, which can generate aggregated CSV files very quickly.
 For coding questions or help, visit https://chatgpt.com.
@@ -251,5 +251,5 @@ For coding questions or help, visit https://chatgpt.com.
 - [Visual Studio Code 1.92.2](https://code.visualstudio.com/download) to edit and run scripts.
 
 
-### Disclaimer:
+## Disclaimer:
 **The results have not been checked for errors. Neither methodological nor technical checks or data cleansing have been performed.**
