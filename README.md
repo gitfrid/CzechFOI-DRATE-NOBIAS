@@ -75,6 +75,7 @@ That means:
 ### Ensure that follow-up time is correctly aligned:
 - The **start of follow-up** must be defined equally for all individuals (e.g., a shared baseline date or event).
 - Avoid **immortal time bias** — no one should be counted as "at risk" before they are actually at risk.
+- For example use **Target Trial Emulation (TTE)** veryone in the emulated trial starts at the same time — e.g., the date when all were eligible for vaccination. This eliminates biases caused by unequal follow-up periods or survival prerequisites.
 
 ### Allow individuals to contribute to both exposure states:
 - A person can contribute **unvaccinated person-time** before receiving a dose and **vaccinated person-time** afterward.
