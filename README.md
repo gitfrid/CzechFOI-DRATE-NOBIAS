@@ -24,7 +24,7 @@ This project draws heavily on those principles, applying them to large-scale rea
 [**See also CzechFOI-DRATE_EXAM project for Investigation of the Bias**](https://github.com/gitfrid/CzechFOI-DRATE_EXAM/tree/main)
 
  _________________________________________
-## Comparison vaccinated vs. unvaccinated with eliminated bias: simulation vs. real data 
+## Comparison vaccinated vs. unvaccinated with eliminated bias: simulation expected HR~1 vs. real Czech data 
 
 <br>Phyton script [) .py]()  Results: [Results TXT]()
 _________________________________________
