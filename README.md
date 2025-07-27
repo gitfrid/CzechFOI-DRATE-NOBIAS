@@ -23,7 +23,52 @@ This project draws heavily on those principles, applying them to large-scale rea
 
 [**See also CzechFOI-DRATE_EXAM project for Investigation of the Bias**](https://github.com/gitfrid/CzechFOI-DRATE_EXAM/tree/main)
 
- _________________________________________
+_________________________________________
+
+## The Solution of Non-Random Boundary Condition Bias
+
+This is what **Hernán & Robins** say:
+
+> **“Don’t compare vaccinated people with unvaccinated people. Compare person-time under vaccination vs. person-time without vaccination.”**
+
+---
+
+### Why is this not a problem for comparison?
+
+Because you no longer say:
+
+> **“Group A (vx) vs. Group B (uvx)”**
+
+But rather:
+
+> **“What is the hazard rate during vaccinated periods compared to unvaccinated periods?”**
+
+This is **fair** because:
+
+- All individuals contribute to the risk time of **both groups** (depending on their vaccination status over time).
+- No one is excluded **"from the outset"** due to the timing of vaccination.
+
+---
+
+### The **wrong** model (which is often used):
+
+You put all vaccinated people in one group and all unvaccinated people in another – and then compare the two groups.
+
+But:
+
+> ❌ **That’s unfair!**
+
+Because:
+
+- The **bias is already baked into the observational real-world data** due to non-random splitting into the two groups.
+
+That means:
+
+- It doesn’t help to randomly assign doses only to the vaccinated group — the bias is already introduced by the way vaccinated and unvaccinated groups were selected.
+- If you randomly assigned doses to the entire population, it would eliminate the bias — but this would destroy the real grouping you actually want to compare.
+- Therefore, you need to find another way to eliminate the bias from the raw data — and **Hernán & Robins** showed how to do this.
+  
+_________________________________________
 ## Comparison vaccinated vs. unvaccinated with eliminated bias - using different Methodes  
 
 ---
@@ -175,50 +220,8 @@ _________________________________________
   - **IRR = 0.999** → about **0.1% lower** death rate.
 - The **pseudo R² is low (0.0335)**, indicating that vaccination explains only a small portion of the variability in death counts.
 - The model converged after 5 iterations with valid diagnostics.
-_________________________________________
-
-## The Solution of Non-Random Boundary Condition Bias
-
-This is what **Hernán & Robins** say:
-
-> **“Don’t compare vaccinated people with unvaccinated people. Compare person-time under vaccination vs. person-time without vaccination.”**
-
----
-
-### Why is this not a problem for comparison?
-
-Because you no longer say:
-
-> **“Group A (vx) vs. Group B (uvx)”**
-
-But rather:
-
-> **“What is the hazard rate during vaccinated periods compared to unvaccinated periods?”**
-
-This is **fair** because:
-
-- All individuals contribute to the risk time of **both groups** (depending on their vaccination status over time).
-- No one is excluded **"from the outset"** due to the timing of vaccination.
-
----
-
-### The **wrong** model (which is often used):
-
-You put all vaccinated people in one group and all unvaccinated people in another – and then compare the two groups.
-
-But:
-
-> ❌ **That’s unfair!**
-
-Because:
-
-- The **bias is already baked into the observational real-world data** due to non-random splitting into the two groups.
-
-That means:
-
-- It doesn’t help to randomly assign doses only to the vaccinated group — the bias is already introduced by the way vaccinated and unvaccinated groups were selected.
-- If you randomly assigned doses to the entire population, it would eliminate the bias — but this would destroy the real grouping you actually want to compare.
-- Therefore, you need to find another way to eliminate the bias from the raw data — and **Hernán & Robins** showed how to do this.
+  
+____________________________________________________
 
 ## Essentials to Eliminate the Bias
 
@@ -238,3 +241,15 @@ That means:
 ### Don’t condition on future information:
 - You must **not use future events** (e.g., dose received later) to define exposure status at earlier times.
 
+_________________________________________
+### Software Requirements:
+
+The aggregation is handled directly by Python scripts, which can generate aggregated CSV files very quickly.
+For coding questions or help, visit https://chatgpt.com.
+
+- [Python 3.12.5](https://www.python.org/downloads/) to run the scripts.
+- [Visual Studio Code 1.92.2](https://code.visualstudio.com/download) to edit and run scripts.
+
+
+### Disclaimer:
+**The results have not been checked for errors. Neither methodological nor technical checks or data cleansing have been performed.**
