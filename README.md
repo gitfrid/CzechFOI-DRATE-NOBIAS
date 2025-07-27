@@ -37,7 +37,7 @@ Phyton script [FW) cox time-varying.py](https://github.com/gitfrid/CzechFOI-DRAT
 <br>
 
 <br>**Vs. real Czech data** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FW%29%20cox%20time-varying/FW%29%20Vesely_106_202403141131_AG70%20cox%20time-varying.TXT)
-<br>Real dadta showing only a very small effect, which corresponds approximately to the magnitude of the residual distortion of the simulated data.
+<br>Real data showing only a very small effect, which corresponds approximately to the magnitude of the residual distortion of the simulated data.
 <br>
 <img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FW%29%20cox%20time-varying/FW%29%20Vesely_106_202403141131_AG70%20cox%20time-varying.png width="1280" height="auto">
 <br>
