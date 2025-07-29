@@ -1,7 +1,7 @@
 Loading data...
 END_MEASURE (max death day): 1095
-Expanding person-day data... this may take a few minutes for large data.
-Aggregating data by age, day, vaccination status...
+Expanding person-day data...
+Aggregating data...
 Fitting Poisson regression model...
 C:\Program Files\Python312\Lib\site-packages\statsmodels\genmod\generalized_linear_model.py:1342: PerfectSeparationWarning: Perfect separation or prediction detected, parameter may not be identified
   warnings.warn(msg, category=PerfectSeparationWarning)
@@ -14,8 +14,8 @@ Model:                            GLM   Df Residuals:                     1829
 Model Family:                 Poisson   Df Model:                            1
 Link Function:                    Log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -11630.
-Date:                Sun, 27 Jul 2025   Deviance:                   1.2897e-09
-Time:                        13:11:05   Pearson chi2:                 3.82e-23
+Date:                Tue, 29 Jul 2025   Deviance:                   1.2897e-09
+Time:                        22:36:41   Pearson chi2:                 3.82e-23
 No. Iterations:                     5   Pseudo R-squ. (CS):              0.000
 Covariance Type:            nonrobust                                         
 ==============================================================================

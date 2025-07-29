@@ -5,181 +5,169 @@ from lifelines import KaplanMeierFitter
 import plotly.graph_objects as go
 import sys
 
+
+# =============================================================================
+# Script: Poisson Regression & Survival Analysis of Vaccination Data (Age ≤ 113)
+#
+# Description:
+#   - Loads individual-level czech-FOI vaccination and mortality data
+#   - Expands data to person-day format
+#   - Flags daily vaccination status and death events
+#   - Performs Poisson regression to estimate effect of vaccination on death risk
+#   - Computes Kaplan-Meier survival curves for vaccinated vs unvaccinated
+#
+# Output:
+#   - Console + text file log
+#   - HTML survival curve plot
+#
+# Date: 29.07.2025
+# =============================================================================
+
+
 # === Constants and input ===
 INPUT_CSV = r"C:\CzechFOI-DRATE-NOBIAS\Terra\FG) case3_sim_deaths_sim_real_doses_with_constraint.csv"
 OUTPUT_HTML = r"C:\CzechFOI-DRATE-NOBIAS\Plot Results\FP) poisson speedup\FP-FG) case3_sim_deaths_sim_real_doses_with_constraint AG70 poisson.html"
 OUTPUT_TXT = r"C:\CzechFOI-DRATE-NOBIAS\Plot Results\FP) poisson speedup\FP-FG) case3_sim_deaths_sim_real_doses_with_constraint AG70 poisson.TXT"
 
-
+# Uncomment below to use real dataset instead of simulation
 #INPUT_CSV = r"C:\CzechFOI-DRATE-NOBIAS\Terra\Vesely_106_202403141131_AG70.csv"
 #OUTPUT_HTML = r"C:\CzechFOI-DRATE-NOBIAS\Plot Results\FP) poisson speedup\FP) real data Vesely_106_202403141131_AG70 poisson.html"
 #OUTPUT_TXT = r"C:\CzechFOI-DRATE-NOBIAS\Plot Results\FP) poisson speedup\FP) real data Vesely_106_202403141131_AG70 poisson.TXT"
 
+START_DATE = pd.Timestamp('2020-01-01')  # Origin date for day number calculation
+MAX_AGE = 113                            # Maximum allowed age for inclusion
+REFERENCE_YEAR = 2023                    # Reference year to calculate age
 
-START_DATE = pd.Timestamp('2020-01-01')
-MAX_AGE = 113
-REFERENCE_YEAR = 2023
-
-# --- Logging helper to tee stdout and stderr ---
+# === Tee logging ===
+# Redirect stdout and stderr to both console and file
 class Tee:
-    def __init__(self, *files):
-        self.files = files
+    def __init__(self, *files): self.files = files
+    def write(self, data): [f.write(data) or f.flush() for f in self.files]
+    def flush(self): [f.flush() for f in self.files]
 
-    def write(self, data):
-        for f in self.files:
-            f.write(data)
-            f.flush()
-
-    def flush(self):
-        for f in self.files:
-            f.flush()
-
-# Setup logging to console and file simultaneously
-original_stdout = sys.stdout
-original_stderr = sys.stderr
 log_file = open(OUTPUT_TXT, "w", encoding="utf-8")
-tee = Tee(sys.stdout, log_file)
-sys.stdout = tee
-sys.stderr = tee
+sys.stdout = sys.stderr = Tee(sys.stdout, log_file)
 
 # === Load and Prepare Data ===
 dose_date_cols = [f'Datum_{i}' for i in range(1, 8)]
-needed_cols = ['Rok_narozeni', 'DatumUmrti'] + dose_date_cols
-
 print("Loading data...")
-df = pd.read_csv(
-    INPUT_CSV,
-    usecols=needed_cols,
-    parse_dates=['DatumUmrti'] + dose_date_cols,
-    dayfirst=False,
-    low_memory=False
-)
+df = pd.read_csv(INPUT_CSV, usecols=['Rok_narozeni', 'DatumUmrti'] + dose_date_cols, parse_dates=['DatumUmrti'] + dose_date_cols, dayfirst=False)
+df.columns = [c.lower() for c in df.columns]
+dose_date_cols = [c.lower() for c in dose_date_cols]
 
-# Lowercase column names
-df.columns = [col.strip().lower() for col in df.columns]
-dose_date_cols_lower = [col.lower() for col in dose_date_cols]
-
+# Compute age from birth year
 df['birth_year'] = pd.to_numeric(df['rok_narozeni'], errors='coerce')
 df['age'] = REFERENCE_YEAR - df['birth_year']
-df = df[df['age'].between(0, MAX_AGE)].copy()
+df = df[df['age'].between(0, MAX_AGE)]
 
-def to_day_number(date_series):
-    return (date_series - START_DATE).dt.days
-
+# Convert all dates to integer day numbers since START_DATE
+def to_day_number(dates): return (dates - START_DATE).dt.days
 df['death_day'] = to_day_number(df['datumumrti'])
-for col in dose_date_cols_lower:
+for col in dose_date_cols:
     df[col + '_day'] = to_day_number(df[col])
 
-# First dose day per individual
-df['first_dose_day'] = df[[col + '_day' for col in dose_date_cols_lower]].min(axis=1, skipna=True)
-df['has_any_dose'] = df[[col + '_day' for col in dose_date_cols_lower]].notna().any(axis=1)
+# Determine first dose day and dose status per individual
+dose_day_cols = [col + '_day' for col in dose_date_cols]
+df['first_dose_day'] = df[dose_day_cols].min(axis=1, skipna=True)
+df['has_any_dose'] = df[dose_day_cols].notna().any(axis=1)
 
-END_MEASURE = int(df['death_day'].dropna().max())
+# Define follow-up end as death day or max death day if censored
+df['end_day'] = df['death_day'].fillna(df['death_day'].max())
+END_MEASURE = int(df['end_day'].max())
 print(f"END_MEASURE (max death day): {END_MEASURE}")
 
-# Define end of follow-up day (death or censoring)
-df['end_day'] = df['death_day'].fillna(END_MEASURE)
+# === Expand to person-day format ===
+print("Expanding person-day data...")
 
-# === Expand each person into daily rows ===
-
-def expand_person_days(row):
-    """Create daily records for one person from day 0 to end_day inclusive.
-    vaccinated = 1 if day >= first_dose_day and person has any dose, else 0."""
-    end = int(row['end_day'])
-    days = np.arange(end + 1)  # from 0 to end_day inclusive
-    vaccinated = np.zeros_like(days, dtype=int)
-    if pd.notna(row['first_dose_day']) and row['has_any_dose']:
-        vaccinated[days >= row['first_dose_day']] = 1
-    return pd.DataFrame({
-        'age': row['age'],
+rows = []
+# Loop over each person and create daily records up to end_day
+for row in df.itertuples(index=False):
+    end_day = int(row.end_day)
+    days = np.arange(end_day + 1)
+    vaccinated = (pd.notna(row.first_dose_day) and row.has_any_dose)
+    vax_mask = days >= row.first_dose_day if vaccinated else np.zeros_like(days, dtype=bool)
+    rows.append(pd.DataFrame({
+        'age': row.age,
         'day': days,
-        'vaccinated': vaccinated,
+        'vaccinated': vax_mask.astype(int),
         'death': 0
-    })
+    }))
 
-print("Expanding person-day data... this may take a few minutes for large data.")
+person_days = pd.concat(rows, ignore_index=True)
 
-person_days_list = []
-for i, row in df.iterrows():
-    person_days_list.append(expand_person_days(row))
+# === Mark deaths efficiently without merge ===
+# Create lookup set of (age, death_day) to quickly mark death events
+death_idx = set(zip(df.loc[df['death_day'].notna(), 'age'], df.loc[df['death_day'].notna(), 'death_day']))
+person_days['death'] = [
+    1 if (age, day) in death_idx else 0
+    for age, day in zip(person_days['age'], person_days['day'])
+]
 
-person_days = pd.concat(person_days_list, ignore_index=True)
+# === Aggregate and Model ===
+print("Aggregating data...")
 
-# Mark deaths in person_days
-death_df = df.loc[df['death_day'].notna(), ['age', 'death_day']]
-for _, drow in death_df.iterrows():
-    mask = (person_days['age'] == drow['age']) & (person_days['day'] == drow['death_day'])
-    person_days.loc[mask, 'death'] = 1
-
-# === Aggregate counts by age, day, vaccination status ===
-print("Aggregating data by age, day, vaccination status...")
-agg = person_days.groupby(['age', 'day', 'vaccinated']).agg(
+# Group by age, day, vaccination status and count deaths and person-days
+agg = person_days.groupby(['age', 'day', 'vaccinated'], sort=False).agg(
     deaths=('death', 'sum'),
-    person_days=('day', 'count')
+    person_days=('death', 'size')
 ).reset_index()
 
-# Offset for Poisson regression = log(person_days)
+# Add offset and centered age for Poisson regression
 agg['offset'] = np.log(agg['person_days'])
-
-# Center age variable for modeling
 agg['age_c'] = agg['age'] - agg['age'].mean()
-
-# Design matrix with intercept, vaccination, centered age
 X = sm.add_constant(agg[['vaccinated', 'age_c']])
 
-# Fit Poisson regression model
+# Fit Poisson GLM model with log offset
 print("Fitting Poisson regression model...")
 model = sm.GLM(agg['deaths'], X, offset=agg['offset'], family=sm.families.Poisson())
 result = model.fit()
-
 print(result.summary())
 
+# Compute Incidence Rate Ratios (IRR) with 95% confidence intervals
 params = result.params
 conf = result.conf_int()
 irr = np.exp(params)
-irr_conf_lower = np.exp(conf[0])
-irr_conf_upper = np.exp(conf[1])
+irr_conf = np.exp(conf)
 
 print("\nIncidence Rate Ratios (IRRs):")
 print(f"Intercept: {irr['const']:.3f}")
 print(f"Vaccinated vs Unvaccinated: {irr['vaccinated']:.3f} "
-      f"(95% CI: {irr_conf_lower['vaccinated']:.3f} - {irr_conf_upper['vaccinated']:.3f})")
+      f"(95% CI: {irr_conf.loc['vaccinated', 0]:.3f} - {irr_conf.loc['vaccinated', 1]:.3f})")
 
 # === Kaplan-Meier Survival Analysis ===
-
 print("Preparing Kaplan-Meier survival data...")
 
-# Unvaccinated period: from day 0 to first dose day or end_day
-unvaccinated = df[['age', 'end_day', 'first_dose_day', 'death_day']].copy()
+# Unvaccinated period: from day 0 until first dose or end of follow-up
+unvaccinated = df.copy()
 unvaccinated['start'] = 0
-unvaccinated['stop'] = unvaccinated['first_dose_day'].fillna(unvaccinated['end_day'])
-unvaccinated['event'] = ((unvaccinated['death_day'] <= unvaccinated['stop']) & (unvaccinated['death_day'].notna())).astype(int)
+unvaccinated['stop'] = df['first_dose_day'].fillna(df['end_day'])
+unvaccinated['event'] = ((df['death_day'] <= unvaccinated['stop']) & df['death_day'].notna()).astype(int)
 unvaccinated['group'] = 'Unvaccinated'
 unvaccinated = unvaccinated[unvaccinated['stop'] > unvaccinated['start']]
 
-# Vaccinated period: from first dose day to end_day
-vaccinated = df[df['first_dose_day'].notna()][['age', 'end_day', 'first_dose_day', 'death_day']].copy()
+# Vaccinated period: from first dose until end of follow-up
+vaccinated = df[df['first_dose_day'].notna()].copy()
 vaccinated['start'] = vaccinated['first_dose_day']
 vaccinated['stop'] = vaccinated['end_day']
-vaccinated['event'] = ((vaccinated['death_day'] >= vaccinated['start']) & (vaccinated['death_day'].notna())).astype(int)
+vaccinated['event'] = ((vaccinated['death_day'] >= vaccinated['start']) & vaccinated['death_day'].notna()).astype(int)
 vaccinated['group'] = 'Vaccinated'
 vaccinated = vaccinated[vaccinated['stop'] > vaccinated['start']]
 
+# Combine both groups for survival analysis
 km_data = pd.concat([unvaccinated, vaccinated], ignore_index=True)
 km_data['duration'] = km_data['stop'] - km_data['start']
 
-# Plot Kaplan-Meier survival curves by group using lifelines + plotly
+# === Plot Kaplan-Meier Curves ===
 fig = go.Figure()
-for group, label, color in zip(['Unvaccinated', 'Vaccinated'], ['Unvaccinated', 'Vaccinated'], ['blue', 'red']):
+for group, color in zip(['Unvaccinated', 'Vaccinated'], ['blue', 'red']):
     mask = km_data['group'] == group
     kmf = KaplanMeierFitter()
-    kmf.fit(durations=km_data.loc[mask, 'duration'], event_observed=km_data.loc[mask, 'event'], label=label)
-
+    kmf.fit(km_data.loc[mask, 'duration'], km_data.loc[mask, 'event'], label=group)
     fig.add_trace(go.Scatter(
         x=kmf.survival_function_.index,
-        y=kmf.survival_function_[label],
+        y=kmf.survival_function_[group],
         mode='lines',
-        name=label,
+        name=group,
         line=dict(color=color)
     ))
 
@@ -191,12 +179,13 @@ fig.update_layout(
     hovermode='x unified'
 )
 
+# Save survival curve as HTML
 km_plot_path = OUTPUT_HTML.replace('.html', '_KM_survival.html')
 fig.write_html(km_plot_path)
 print(f"KM survival plot saved to {km_plot_path}")
 
-# Close log file and restore stdout/stderr
-sys.stdout = original_stdout
-sys.stderr = original_stderr
+# === Cleanup ===
+sys.stdout = sys.__stdout__
+sys.stderr = sys.__stderr__
 log_file.close()
 print("Script completed.")

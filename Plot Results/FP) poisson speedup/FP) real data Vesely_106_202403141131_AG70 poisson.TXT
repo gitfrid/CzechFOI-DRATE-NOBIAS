@@ -1,0 +1,29 @@
+Loading data...
+END_MEASURE (max death day): 1095
+Expanding person-day data...
+Aggregating data...
+Fitting Poisson regression model...
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:                 deaths   No. Observations:                 1831
+Model:                            GLM   Df Residuals:                     1829
+Model Family:                 Poisson   Df Model:                            1
+Link Function:                    Log   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:            -1.4325e+05
+Date:                Tue, 29 Jul 2025   Deviance:                   2.6326e+05
+Time:                        22:31:01   Pearson chi2:                 1.32e+05
+No. Iterations:                     5   Pseudo R-squ. (CS):            0.03348
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.0003      0.000     -2.621      0.009      -0.001   -7.49e-05
+vaccinated    -0.0013      0.000     -7.896      0.000      -0.002      -0.001
+age_c               0          0        nan        nan           0           0
+==============================================================================
+
+Incidence Rate Ratios (IRRs):
+Intercept: 1.000
+Vaccinated vs Unvaccinated: 0.999 (95% CI: 0.998 - 0.999)
+Preparing Kaplan-Meier survival data...
+KM survival plot saved to C:\CzechFOI-DRATE-NOBIAS\Plot Results\FP) poisson speedup\FP) real data Vesely_106_202403141131_AG70 poisson_KM_survival.html
