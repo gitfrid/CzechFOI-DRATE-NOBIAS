@@ -67,11 +67,78 @@ That means:
 - It doesn’t help to randomly assign doses only to the vaccinated group — the bias is already introduced by the way vaccinated and unvaccinated groups were selected.
 - If you randomly assigned doses to the entire population, it would eliminate the bias — but this would destroy the real vx/uvx grouping you actually want to compare.
 - Therefore, you need to find another way to eliminate the bias from the raw data — and **Hernán & Robins** showed how to do this.
-  
+
 _________________________________________
 ## Comparison vaccinated vs. unvaccinated with eliminated bias - using different Methodes  
 
 ---
+### FL) cox time-varying with COX daily survival curve splot
+Phyton script [FL) cox time-varying survival curves daily.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FL%29%20cox%20time-varying%20survival%20curves%20daily.py)
+<br>
+<br>**Simulated data (expected HR~1 / no effect-placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL%29%20cox%20time-varying%20survival%20curves%20daily/FL-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20cox%20time-varying.TXT)
+<br>With corrected distortion, the curves for vaccinated and unvaccinated individuals must overlap for the simulated data with HR~1! 
+<br>This proves that the evaluation is bias-free.
+<br>
+<img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL%29%20cox%20time-varying%20survival%20curves%20daily/FL-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20cox%20time-varying.png width="1280" height="auto">
+<br>
+
+<br>**Vs. real Czech data** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL%29%20cox%20time-varying%20survival%20curves%20daily/FL%29%20Vesely_106_202403141131_AG70%20cox%20time-varying.TXT)
+<br>Czech FOI real data AG70 – When evaluated identically to eliminate distortions, the result shows virtually no effectiveness.
+<br>
+<img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL)%20cox%20time-varying%20survival%20curves%20daily/FL)%20Vesely_106_202403141131_AG70%20cox%20time-varying.png width="1280" height="auto">
+<br>
+_________________________________________
+
+### FL) CoX Time-Varying Survival Analysis Results:
+
+- **Study Period sart date 2020-01-01 until END_MEASURE 1095 days**
+- **Follow-up window for life years saved calculation:** up to day 734
+
+**Notes**
+- The model uses **time-varying covariates** to avoid immortal time bias.
+- `vaccinated_time` allows modeling of **waning protection** over time.
+---
+
+### Simulated data (expected HR~1 / no effect-placebo): 
+
+Model Convergence Converged after 5 iterations
+
+### Model Coefficients and Hazard Ratios
+
+| Covariate        | Coef     | exp(Coef) (HR) | 95% CI (HR)        | p-value        | Interpretation                         |
+|------------------|----------|----------------|---------------------|----------------|----------------------------------------|
+| `vaccinated`     | -0.147   | **0.863**      | 0.843 – 0.884       | 3.1e-34        | **13.7% lower death hazard**           |
+| `t`              | -0.00097 | 0.999          | 0.999 – 0.999       | ≈ 0            | Slightly decreasing baseline hazard    |
+| `vaccinated_time`| -0.00048 | 0.9995         | 0.9995 – 0.9996     | 7.3e-130       | Very mild waning over time             |
+
+
+### Key Metrics
+
+- **Vaccine Effectiveness (VE):** `1 - HR = 1 - 0.863 = 13.7%` **still small bias present as expected HR is ~1**
+- **Statistical significance:** all covariates are **highly significant** (p < 10⁻³⁰)
+
+--
+
+### vs. Real Czech data: 
+
+Model Convergence Converged after 5 iterations
+
+### Model Coefficients and Hazard Ratios
+
+| Covariate        | Coef     | exp(Coef) (HR) | 95% CI (HR)        | p-value         | Interpretation                        |
+|------------------|----------|----------------|---------------------|------------------|---------------------------------------|
+| `vaccinated`     | -0.077   | **0.926**      | 0.904 – 0.948       | 1.56e-10         | **7.4% lower death hazard**           |
+| `t`              | -0.00094 | 0.999          | 0.999 – 0.999       | ≈ 0              | Slight baseline decline over time     |
+| `vaccinated_time`| -0.00046 | 0.9995         | 0.9995 – 0.9996     | 1.44e-118        | Very mild waning effect               |
+
+
+### Key Metrics
+
+- **Vaccine Effectiveness (VE):** `1 - HR = 1 - 0.926 = 7.4%` **probably because still small bias present as the simulated data show**
+- **All covariates statistically significant** at extremely low p-values (p < 1e-10)
+
+_________________________________________
+
 ### FW) cox time-varying Methode with Kaplan–Meier (KM) survival curve plot
 Phyton script [FW) cox time-varying.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FW%29%20cox%20time-varying.py)
 <br>
