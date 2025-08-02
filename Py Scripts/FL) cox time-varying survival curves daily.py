@@ -40,6 +40,7 @@ REFERENCE_YEAR = 2023                    # Used for age calculation
 MAX_AGE = 113                            # Max allowed age
 LAG_DAYS = 0                             # Immunization lag in days
 COX_PENALIZER = 3                        # Chosen based on best alignment with expected HR~1 in simulation; helps stabilize estimates and prevent overfitting/underfitting
+AGE = 70                                 # Filter to certain AG for faster testing
 
 # Columns for vaccine dose dates
 dose_cols = [f'Datum_{i}' for i in range(1, 8)]
@@ -79,8 +80,8 @@ df['age'] = REFERENCE_YEAR - df['birth_year']
 df = df[df['age'].between(0, MAX_AGE)].copy()
 df.dropna(subset=['age'], inplace=True)
 
-# Forcing everyone to age 70
-df['age'] = 70
+# Filter for AG 
+df = df[df['age'] == AGE].copy()
 
 # Convert all date columns to integer "days since START_DATE"
 def to_day(col):

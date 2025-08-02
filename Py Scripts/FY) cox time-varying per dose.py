@@ -20,6 +20,7 @@ START_DATE = pd.Timestamp('2020-01-01')
 REFERENCE_YEAR = 2023
 MAX_AGE = 113
 LAG_DAYS = 0  # Immunization starts 14 days after vaccination
+AGE = 70
 
 class Tee:
     def __init__(self, *files):
@@ -63,8 +64,8 @@ df['age'] = REFERENCE_YEAR - df['birth_year']
 df = df[df['age'].between(0, MAX_AGE)].copy()
 df.dropna(subset=['age'], inplace=True)
 
-# Optional: fix age to 70 if dataset is only for age 70 group
-df['age'] = 70
+# Filter for AG 
+df = df[df['age'] == AGE].copy()
 
 # === Convert dates to day numbers ===
 to_day = lambda col: (df[col] - START_DATE).dt.days

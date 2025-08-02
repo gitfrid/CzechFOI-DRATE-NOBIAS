@@ -49,6 +49,7 @@ START_DATE = pd.Timestamp('2020-01-01')  # Reference date for calculating relati
 REFERENCE_YEAR = 2023                   # Used to calculate age from year of birth
 MAX_AGE = 113                           # Age filtering threshold
 LAG_DAYS = 0                            # Immunization lag (e.g., 14 days) after vaccination
+AGE = 70                                # Filter to certain AG for faster testing
 
 original_stdout = sys.stdout  # Backup original stdout
 
@@ -100,8 +101,8 @@ df['age'] = REFERENCE_YEAR - df['birth_year']
 df = df[df['age'].between(0, MAX_AGE)].copy()
 df.dropna(subset=['age'], inplace=True)
 
-# Override: If the dataset is already for age 70 group, force all rows to age 70
-df['age'] = 70
+# Filter for AG 
+df = df[df['age'] == AGE].copy()
 
 # === Convert all date columns to integer day numbers ===
 to_day = lambda col: (df[col] - START_DATE).dt.days
