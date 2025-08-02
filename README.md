@@ -99,9 +99,9 @@ _________________________________________
 - `vaccinated_time` allows modeling of **waning protection** over time.
 ---
 
-### Simulated Dataset Result (Real Doses + Simulated Deaths + expected HR~1 / no effect-placebo)
+### Simulated Dataset (Simulated Deaths and real Dose schedule) - expected HR~1 no effect -> placebo
 
-This run evaluates a time-varying Cox proportional hazards model using **real-world vaccination timing data with constraint death day > last dose day** combined with **simulated death events** that are independent of vaccination status (expected hazard ratio HR ≈ 1). The model used a COX_PENALIZER = 3, which was empirically determined to produce stable and unbiased estimates aligned with the known structure of the simulated data.
+This run evaluates a time-varying Cox proportional hazards model using **real-world vaccination timing data with constraint death day > last dose day** combined with **simulated death events** that are independent of vaccination status (expected hazard ratio HR ≈ 1). The model used a COX_PENALIZER = 3, which was empirically determined to produce stable and unbiased estimates aligned with the known outcomme of the simulated data.
 
 **Model Outcome Summary:**
 
@@ -123,7 +123,7 @@ This confirms that the model setup — including the chosen penalizer value — 
 
 ### vs. Real-World Dataset Result (Czech FOI Deaths + Real Doses) for AG70
 
-This run applies the time-varying Cox proportional hazards model to **real-world data from the Czech Republic**, using actual vaccination dates and recorded all-cause deaths. 
+This run applies the time-varying Cox proportional hazards model to **real-world data from the Czech Republic**, using actual vaccination dose dates and recorded all-cause deaths. 
 The analysis focused on deaths observed from start 01.01.2020 as day 0 up to day 1095.
 
 The model includes two covariates:
