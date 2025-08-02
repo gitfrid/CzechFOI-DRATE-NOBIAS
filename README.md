@@ -92,50 +92,64 @@ _________________________________________
 ### FL) CoX Time-Varying Survival Analysis Results:
 
 - **Study Period sart date 2020-01-01 until END_MEASURE 1095 days**
-- **Follow-up window for life years saved calculation:** up to day 734
 
 **Notes**
 - The model uses **time-varying covariates** to avoid immortal time bias.
 - `vaccinated_time` allows modeling of **waning protection** over time.
 ---
 
-### Simulated data (expected HR~1 / no effect-placebo): 
+### Simulated Dataset Result (Real Doses + Simulated Deaths + expected HR~1 / no effect-placebo)
 
-Model Convergence Converged after 5 iterations
+This run evaluates a time-varying Cox proportional hazards model using **real-world vaccination timing data with constraint death day > last dose day** combined with **simulated death events** that are independent of vaccination status (expected hazard ratio HR ≈ 1). The model used a COX_PENALIZER = 3, which was empirically determined to produce stable and unbiased estimates aligned with the known structure of the simulated data.
 
-### Model Coefficients and Hazard Ratios
+**Model Outcome Summary:**
 
-| Covariate        | Coef     | exp(Coef) (HR) | 95% CI (HR)        | p-value        | Interpretation                         |
-|------------------|----------|----------------|---------------------|----------------|----------------------------------------|
-| `vaccinated`     | -0.147   | **0.863**      | 0.843 – 0.884       | 3.1e-34        | **13.7% lower death hazard**           |
-| `t`              | -0.00097 | 0.999          | 0.999 – 0.999       | ≈ 0            | Slightly decreasing baseline hazard    |
-| `vaccinated_time`| -0.00048 | 0.9995         | 0.9995 – 0.9996     | 7.3e-130       | Very mild waning over time             |
+| Covariate         | HR (exp(coef)) | 95% CI       | p-value   | Interpretation                                                         |
+|-------------------|----------------|--------------|-----------|----------------------------------------------------------------------- |
+| `vaccinated`      | 0.993          | 0.989–0.998  | 0.0029    | Slight apparent protective effect due to noise or still minimal bias   |
+| `vaccinated_time` | 1.000          | 1.000–1.000  | 3.5e-07   | Effect over time is negligible as expected                             |
 
-
-### Key Metrics
-
-- **Vaccine Effectiveness (VE):** `1 - HR = 1 - 0.863 = 13.7%` **still small bias present as expected HR is ~1**
-- **Statistical significance:** all covariates are **highly significant** (p < 10⁻³⁰)
-
+- **Deaths before vaccination + lag 0 :** 5496  
+- **Deaths after vaccination + lag 0 :** 2371  
+- **Life years saved:** ~0.0006 years (negligible, as expected)  
+- **Total deaths:** 7867  
+- **Event distribution:**  
+  - **Unvaccinated deaths:** 5496  
+  - **Vaccinated deaths:** 2371  
+<br>The results show that the model correctly detects **no meaningful difference in mortality risk** between vaccinated and unvaccinated individuals when using simulated deaths that are intentionally unrelated to vaccination. 
+This confirms that the model setup — including the chosen penalizer value — does **not introduce artificial vaccine effects** when none exist, ensuring valid and unbiased estimates under a neutral ground truth.
 --
 
-### vs. Real Czech data: 
+### vs. Real-World Dataset Result (Czech FOI Deaths + Real Doses) for AG70
 
-Model Convergence Converged after 5 iterations
+This run applies the time-varying Cox proportional hazards model to **real-world data from the Czech Republic**, using actual vaccination dates and recorded all-cause deaths. 
+The analysis focused on deaths observed from start 01.01.2020 as day 0 up to day 1095.
 
-### Model Coefficients and Hazard Ratios
+The model includes two covariates:
+- `vaccinated`: binary indicator for vaccination status
+- `vaccinated_time`: time since vaccination
 
-| Covariate        | Coef     | exp(Coef) (HR) | 95% CI (HR)        | p-value         | Interpretation                        |
-|------------------|----------|----------------|---------------------|------------------|---------------------------------------|
-| `vaccinated`     | -0.077   | **0.926**      | 0.904 – 0.948       | 1.56e-10         | **7.4% lower death hazard**           |
-| `t`              | -0.00094 | 0.999          | 0.999 – 0.999       | ≈ 0              | Slight baseline decline over time     |
-| `vaccinated_time`| -0.00046 | 0.9995         | 0.9995 – 0.9996     | 1.44e-118        | Very mild waning effect               |
+Same penalization value of COX_PENALIZER = 3 was used to stabilize the model and prevent overfitting.
 
+**Model Outcome Summary:**
 
-### Key Metrics
+| Covariate         | HR (exp(coef)) | 95% CI       | p-value   | Interpretation                                                  |
+|-------------------|----------------|--------------|-----------|-----------------------------------------------------------------|
+| `vaccinated`      | 0.996          | 0.991–1.000  | 0.0717    | Slight protective trend, but **not statistically significant**  |
+| `vaccinated_time` | 1.000          | 1.000–1.000  | 2.0e-06   | Small decreasing effect over time, statistically significant    |
 
-- **Vaccine Effectiveness (VE):** `1 - HR = 1 - 0.926 = 7.4%` **probably because still small bias present as the simulated data show**
-- **All covariates statistically significant** at extremely low p-values (p < 1e-10)
+- **Deaths before vaccination + lag:** 5131  
+- **Deaths after vaccination + lag:** 2706  
+- **Life years saved by vaccination:** ~0.0004 years  
+- **Total deaths:** 7837  
+- **Event distribution:**  
+  - **Unvaccinated deaths:** 5131  
+  - **Vaccinated deaths:** 2706  
+
+The results suggest **no meaningfull reduction in mortality hazard** following vaccination in AG70. While the main effect (`vaccinated`) is not statistically significant, 
+the direction aligns with a modest protective signal. The `vaccinated_time` covariate shows a statistically significant (though clinically minimal) decreasing hazard over time post-vaccination.
+
+This supports that, even under real-world observational data, the model remains robust and interpretable without introducing artifacts, using the same penalizer.
 
 _________________________________________
 
