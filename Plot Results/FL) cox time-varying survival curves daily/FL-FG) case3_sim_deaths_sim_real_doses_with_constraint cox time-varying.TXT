@@ -1,0 +1,55 @@
+=== Starting Cox Time-Varying Survival Analysis ===
+Loading CSV...
+Dataset filtered to age 113, END_MEASURE (max death day): 1095
+Total rows after filtering: 136530
+Preparing time-varying data for Cox model...
+Prepared time-varying dataset with 250117 rows
+Fitting Cox Time-Varying Model...
+Iteration 1: norm_delta = 6.46e-03, step_size = 0.9500, log_lik = -92790.65943, newton_decrement = 1.74e+01, seconds_since_start = 22.4
+Iteration 2: norm_delta = 3.23e-04, step_size = 0.9500, log_lik = -92773.25570, newton_decrement = 4.36e-02, seconds_since_start = 43.5
+Iteration 3: norm_delta = 1.61e-05, step_size = 0.9500, log_lik = -92773.21224, newton_decrement = 1.09e-04, seconds_since_start = 65.4
+Iteration 4: norm_delta = 8.49e-07, step_size = 1.0000, log_lik = -92773.21213, newton_decrement = 2.72e-07, seconds_since_start = 86.6
+Iteration 5: norm_delta = 6.93e-15, step_size = 1.0000, log_lik = -92773.21213, newton_decrement = 1.80e-23, seconds_since_start = 110.4
+Convergence completed after 5 iterations.
+
+=== Cox Model Summary ===
+                    coef  exp(coef)  se(coef)  coef lower 95%  coef upper 95%  exp(coef) lower 95%  exp(coef) upper 95%  cmp to         z             p   -log2(p)
+covariate                                                                                                                                                         
+vaccinated      -0.00689   0.993134  0.002315       -0.011426       -0.002353             0.988639             0.997650     0.0 -2.976494  2.915650e-03   8.421967
+vaccinated_time -0.00002   0.999980  0.000004       -0.000027       -0.000012             0.999973             0.999988     0.0 -5.092226  3.538846e-07  21.430218
+
+Hazard Ratios and 95% Confidence Intervals:
+  vaccinated: HR = 0.993 (95% CI: 0.989 - 0.998)
+  vaccinated_time: HR = 1.000 (95% CI: 1.000 - 1.000)
+Calculating predicted daily survival curves manually...
+Life years saved by vaccination: 0.0006 years
+Variance vaccinated when event=1: 0.21057906148917205
+Variance vaccinated when event=0: 0.2483278858471072
+Vaccinated counts when event=1:
+ vaccinated
+0    5496
+1    2371
+Name: count, dtype: int64
+Vaccinated counts when event=0:
+ vaccinated
+0    131034
+1    111216
+Name: count, dtype: int64
+Deaths before vaccination + lag: 5496
+Deaths after vaccination + lag: 2371
+Count rows in time-varying dataset event  vaccinated
+0      0             131034
+       1             111216
+1      0               5496
+       1               2371
+dtype: int64
+
+=== DEBUG: Death Events by Vaccination Status ===
+Total death events: 7867
+Vaccinated death events: 2371
+Unvaccinated death events: 5496
+==============================================
+
+Generating Plotly survival curve plot...
+Plot saved to: C:\github\CzechFOI-DRATE-NOBIAS\Plot Results\FL) cox time-varying survival curves daily\FL-FG) case3_sim_deaths_sim_real_doses_with_constraint cox time-varying.html
+=== Analysis Complete ===
