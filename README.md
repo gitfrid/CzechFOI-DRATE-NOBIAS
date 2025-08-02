@@ -41,7 +41,7 @@ Because you no longer say:
 
 But rather:
 
-> **“What is the hazard rate during vaccinated periods compared to unvaccinated periods?”**
+> **“What is the hazard rate during vaccinated periods compared to unvaccinated periods”**
 
 This is **fair** because:
 
@@ -72,6 +72,7 @@ _________________________________________
 ## Comparison vaccinated vs. unvaccinated with eliminated bias - using different Methodes  
 
 ---
+
 ### FL) cox time-varying with COX daily survival curve splot
 Phyton script [FL) cox time-varying survival curves daily.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FL%29%20cox%20time-varying%20survival%20curves%20daily.py)
 <br>
