@@ -72,7 +72,7 @@ _________________________________________
 ## Comparison vaccinated vs. unvaccinated with eliminated bias - using different Methodes  
 
 ---
-### FW) cox time-varying Methode 
+### FW) cox time-varying Methode with Kaplan–Meier plot
 Phyton script [FW) cox time-varying.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FW%29%20cox%20time-varying.py)
 <br>
 <br>**Simulated data (expected HR~1 / no effect-placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FW%29%20cox%20time-varying/FW-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20AG70%20cox%20time-varying.TXT)
@@ -137,7 +137,7 @@ Model Convergence Converged after 5 iterations
 - **All covariates statistically significant** at extremely low p-values (p < 1e-10)
 
 _________________________________________
-### FY) cox time-varying Methode per Dose
+### FY) cox time-varying Methode per Dose with Kaplan–Meier plot
 Phyton script [FY) cox time-varying per dose.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FY%29%20cox%20time-varying%20per%20dose.py)
 <br>
 <br>**Simulated data (expected HR~1 / no effect-placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FY%29%20cox%20time-varying%20per%20Dose/FY-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20AG70%20cox%20time-varying%20per%20dose.TXT)
