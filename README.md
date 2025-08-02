@@ -64,8 +64,8 @@ Because:
 
 That means:
 
-- It doesn’t help to randomly assign doses only to the vaccinated group — the bias is already introduced by real world constraint death day > last dose day.
-- If you randomly assigned doses to the entire population, it would eliminate the bias — but this would destroy the real vx/uvx grouping you actually want to compare.
+- It doesn’t help to randomly assign doses only to the vaccinated group, as the bias is already introduced by real world constraint death day > last dose day.
+- If you randomly assigne the doses to the entire population, it would eliminate the bias — but this would destroy the real relation of vx/uvx grouping you actually want to compare.
 - Therefore, you need to find another way to eliminate the bias from the raw data — and **Hernán & Robins** showed how to do this.
 
 _________________________________________
