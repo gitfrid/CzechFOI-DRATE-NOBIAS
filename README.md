@@ -78,14 +78,15 @@ Phyton script [FL) cox time-varying survival curves daily.py](https://github.com
 <br>
 <br>**Simulated data (expected HR~1 no effect = placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL%29%20cox%20time-varying%20survival%20curves%20daily/FL-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20cox%20time-varying.TXT)
 <br>With corrected distortion, the curves for vaccinated and unvaccinated individuals must overlap for the simulated data with HR~1!
-<br>This proves that the evaluation is bias-free.
+<br>**This proves that the used evaluation methode is bias-free.**
 <br>
 <br>
 <img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL%29%20cox%20time-varying%20survival%20curves%20daily/FL-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20cox%20time-varying.png width="1280" height="auto">
 <br>
 
 <br>**Vs. real Czech data** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL%29%20cox%20time-varying%20survival%20curves%20daily/FL%29%20Vesely_106_202403141131_AG70%20cox%20time-varying.TXT)
-<br>Czech FOI real data AG70 – When evaluated identically to eliminate distortions, the result shows virtually no effectiveness.
+<br>Czech FOI real data AG70 were evaluated identically to eliminate distortions.
+<br>**The result shows virtually no vaccine effectiveness (vaccinated and unvaccinated overlap)**
 <br>
 <br>
 <img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL)%20cox%20time-varying%20survival%20curves%20daily/FL)%20Vesely_106_202403141131_AG70%20cox%20time-varying.png width="1280" height="auto">
@@ -103,7 +104,8 @@ _________________________________________
 
 ### Simulated Dataset (Simulated Deaths and real Dose schedule) - expected HR~1 no effect -> placebo
 
-This run evaluates a time-varying Cox proportional hazards model using **real-world vaccination timing data with constraint death day > last dose day** combined with **simulated death events** that are independent of vaccination status (expected hazard ratio HR ≈ 1). The model used a COX_PENALIZER = 3, which was empirically determined to produce stable and unbiased estimates aligned with the known outcomme of the simulated data.
+This run evaluates a time-varying Cox proportional hazards model using **simulated homogen constant death events for whole population** with afterwards random assigned **real-world vaccination dose timing with constraint death day > last dose day applied** 
+(expected hazard ratio HR ≈ 1). The model used a COX_PENALIZER = 3, which was empirically determined to produce stable and unbiased estimates aligned with the known outcomme of the simulated data.
 
 **Model Outcome Summary:**
 
@@ -125,14 +127,13 @@ This confirms that the model setup — including the chosen penalizer value — 
 
 ### vs. Real-World Dataset Result (Czech FOI Deaths + Real Doses) for AG70
 
-This run applies the time-varying Cox proportional hazards model to **real-world data from the Czech Republic**, using actual vaccination dose dates and recorded all-cause deaths. 
-The analysis focused on deaths observed from start 01.01.2020 as day 0 up to day 1095.
+This run applies exactly the same evaluation to **real-world data from the Czech Republic**, using actual vaccination dose dates and recorded all-cause deaths. 
 
 The model includes two covariates:
 - `vaccinated`: binary indicator for vaccination status
 - `vaccinated_time`: time since vaccination
 
-Same penalization value as for simulated data above was used to stabilize the model and prevent overfitting.
+Same penalization value as for simulated data above was used.
 
 **Model Outcome Summary:**
 
@@ -151,8 +152,6 @@ Same penalization value as for simulated data above was used to stabilize the mo
 
 The results suggest **no meaningfull reduction in mortality hazard** following vaccination in AG70. While the main effect (`vaccinated`) is not statistically significant, 
 the direction aligns with a modest protective signal. The `vaccinated_time` covariate shows a statistically significant (though clinically minimal) decreasing hazard over time post-vaccination.
-
-This supports that, even under real-world observational data, the model remains robust and interpretable without introducing artifacts, using the same penalizer.
 
 _________________________________________
 
