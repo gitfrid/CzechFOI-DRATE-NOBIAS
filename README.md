@@ -72,11 +72,11 @@ _________________________________________
 ## Comparison vaccinated vs. unvaccinated with eliminated bias - using different Methodes  
 
 ---
-### FW) cox time-varying Methode 
+### FW) cox time-varying Methode with Kaplan–Meier (KM) survival curve plot
 Phyton script [FW) cox time-varying.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FW%29%20cox%20time-varying.py)
 <br>
 <br>**Simulated data (expected HR~1 / no effect-placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FW%29%20cox%20time-varying/FW-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20AG70%20cox%20time-varying.TXT)
-<br>There is still a slight distortion, as vx and uvx should theoretically overlap horizontally. 
+<br>There is still a slight distortion, as vx and uvx should theoretically overlap. 
 <br>
 <img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FW)%20cox%20time-varying/FW-FG)%20case3_sim_deaths_sim_real_doses_with_constraint%20AG70%20cox%20time-varying.png width="1280" height="auto">
 <br>
@@ -137,7 +137,7 @@ Model Convergence Converged after 5 iterations
 - **All covariates statistically significant** at extremely low p-values (p < 1e-10)
 
 _________________________________________
-### FY) cox time-varying Methode per Dose
+### FY) cox time-varying Methode per Dose with Kaplan–Meier (KM) survival curve plot
 Phyton script [FY) cox time-varying per dose.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FY%29%20cox%20time-varying%20per%20dose.py)
 <br>
 <br>**Simulated data (expected HR~1 / no effect-placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FY%29%20cox%20time-varying%20per%20Dose/FY-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20AG70%20cox%20time-varying%20per%20dose.TXT)
@@ -152,7 +152,7 @@ Phyton script [FY) cox time-varying per dose.py](https://github.com/gitfrid/Czec
 <img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FY%29%20cox%20time-varying%20per%20Dose/FY%29%20real%20data%20Vesely_106_202403141131_AG70%20cox%20time-varying%20per%20dose.png width="1280" height="auto">
 <br>
 _________________________________________
-### FZ) Poisson Methode
+### FZ) Poisson Methode with Kaplan–Meier (KM) survival curve plot
 Phyton script [FZ) poisson.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FZ%29%20poisson.py)
 <br>
 <br>**Simulated data (expected HR~1 / no effect-placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FZ%29%20poisson/FZ-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20AG70%20poisson.TXT)
