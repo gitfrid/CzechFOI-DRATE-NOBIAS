@@ -6,20 +6,13 @@ from scipy.integrate import simps
 import sys
 
 # === User input configuration ===
-# INPUT_CSV = r"..."
-# OUTPUT_HTML = r"..."
-# OUTPUT_TXT = r"..."
+#INPUT_CSV = r"C:\github\CzechFOI-DRATE-NOBIAS\Terra\FG) case3_sim_deaths_sim_real_doses_with_constraint.csv"
+#OUTPUT_HTML = r"C:\github\CzechFOI-DRATE-NOBIAS\Plot Results\FL) cox time-varying survival curves daily\FL-FG) case3_sim_deaths_sim_real_doses_with_constraint cox time-varying.html"
+#OUTPUT_TXT = r"C:\github\CzechFOI-DRATE-NOBIAS\Plot Results\FL) cox time-varying survival curves daily\FL-FG) case3_sim_deaths_sim_real_doses_with_constraint cox time-varying.TXT"
 
-# === USER CONFIGURATION ===
-INPUT_CSV = r"C:\CzechFOI-DRATE-NOBIAS\Terra\Vesely_106_202403141131_AG70.csv"
-OUTPUT_HTML = r"C:\CzechFOI-DRATE-NOBIAS\Plot Results\FL) cox time-varying daily\FL) Vesely_106_202403141131_AG70 cox time-varying.html"
-OUTPUT_TXT = r"C:\CzechFOI-DRATE-NOBIAS\Plot Results\FL) cox time-varying daily\FL) Vesely_106_202403141131_AG70 cox time-varying.TXT"
-
-START_DATE = pd.Timestamp('2020-01-01')  # Origin date to count days from
-REFERENCE_YEAR = 2023                    # Used for age calculation
-MAX_AGE = 113                            # Max allowed age
-LAG_DAYS = 0                             # Immunization lag in days
-
+INPUT_CSV = r"C:\github\CzechFOI-DRATE-NOBIAS\Terra\Vesely_106_202403141131_AG70.csv"
+OUTPUT_HTML = r"C:\github\CzechFOI-DRATE-NOBIAS\Plot Results\FL) cox time-varying survival curves daily\FL) Vesely_106_202403141131_AG70 cox time-varying.html"
+OUTPUT_TXT = r"C:\github\CzechFOI-DRATE-NOBIAS\Plot Results\FL) cox time-varying survival curves daily\FL) Vesely_106_202403141131_AG70 cox time-varying.TXT"
 
 """
 Cox Time-Varying Survival Analysis with Life Years Saved Estimation and Plotting
@@ -41,6 +34,12 @@ Assumptions:
 Author: drifting - on a sea of forgotten teardrops
 """
 
+# === USER CONFIGURATION ===
+START_DATE = pd.Timestamp('2020-01-01')  # Origin date to count days from
+REFERENCE_YEAR = 2023                    # Used for age calculation
+MAX_AGE = 113                            # Max allowed age
+LAG_DAYS = 0                             # Immunization lag in days
+COX_PENALIZER = 3                        # Chosen based on best alignment with expected HR~1 in simulation; helps stabilize estimates and prevent overfitting/underfitting
 
 # Columns for vaccine dose dates
 dose_cols = [f'Datum_{i}' for i in range(1, 8)]
@@ -152,7 +151,7 @@ print(f"Prepared time-varying dataset with {tv_df.shape[0]} rows")
 # === Fit the Cox model ===
 print("Fitting Cox Time-Varying Model...")
 
-ctv = CoxTimeVaryingFitter(penalizer=3)
+ctv = CoxTimeVaryingFitter(penalizer=COX_PENALIZER)
 ctv.fit(tv_df, id_col="id", start_col="start", stop_col="stop", event_col="event", show_progress=True)
 
 print("\n=== Cox Model Summary ===")
@@ -197,6 +196,7 @@ ly_uvx = simps(s_uvx, days)
 ly_vx = simps(s_vx, days)
 life_years_saved = ly_vx - ly_uvx
 
+# === Debugging output of death events by vaccination ===
 print(f"Life years saved by vaccination: {life_years_saved / 365.25:.4f} years")
 events = tv_df['event'].astype(bool)
 print("Variance vaccinated when event=1:", tv_df.loc[events, 'vaccinated'].var())
@@ -207,11 +207,9 @@ print("Deaths before vaccination + lag:", tv_df[(tv_df['vaccinated'] == 0) & (tv
 print("Deaths after vaccination + lag:", tv_df[(tv_df['vaccinated'] == 1) & (tv_df['event'] == 1)].shape[0])
 print("Count rows in time-varying dataset", tv_df.groupby(['event', 'vaccinated']).size())
 
-# === Debugging output of death events by vaccination ===
 event_mask = tv_df['event'] == 1
 vx_events = tv_df[event_mask & (tv_df['vaccinated'] == 1)]
 uvx_events = tv_df[event_mask & (tv_df['vaccinated'] == 0)]
-
 print(f"\n=== DEBUG: Death Events by Vaccination Status ===")
 print(f"Total death events: {event_mask.sum()}")
 print(f"Vaccinated death events: {len(vx_events)}")
