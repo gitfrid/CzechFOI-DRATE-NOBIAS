@@ -76,15 +76,17 @@ _________________________________________
 ### FL) cox time-varying with COX daily survival curve splot
 Phyton script [FL) cox time-varying survival curves daily.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FL%29%20cox%20time-varying%20survival%20curves%20daily.py)
 <br>
-<br>**Simulated data (expected HR~1 / no effect-placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL%29%20cox%20time-varying%20survival%20curves%20daily/FL-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20cox%20time-varying.TXT)
-<br>With corrected distortion, the curves for vaccinated and unvaccinated individuals must overlap for the simulated data with HR~1! 
+<br>**Simulated data (expected HR~1 no effect = placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL%29%20cox%20time-varying%20survival%20curves%20daily/FL-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20cox%20time-varying.TXT)
+<br>With corrected distortion, the curves for vaccinated and unvaccinated individuals must overlap for the simulated data with HR~1!
 <br>This proves that the evaluation is bias-free.
+<br>
 <br>
 <img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL%29%20cox%20time-varying%20survival%20curves%20daily/FL-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20cox%20time-varying.png width="1280" height="auto">
 <br>
 
 <br>**Vs. real Czech data** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL%29%20cox%20time-varying%20survival%20curves%20daily/FL%29%20Vesely_106_202403141131_AG70%20cox%20time-varying.TXT)
 <br>Czech FOI real data AG70 – When evaluated identically to eliminate distortions, the result shows virtually no effectiveness.
+<br>
 <br>
 <img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL)%20cox%20time-varying%20survival%20curves%20daily/FL)%20Vesely_106_202403141131_AG70%20cox%20time-varying.png width="1280" height="auto">
 <br>
@@ -130,7 +132,7 @@ The model includes two covariates:
 - `vaccinated`: binary indicator for vaccination status
 - `vaccinated_time`: time since vaccination
 
-Same penalization value of COX_PENALIZER = 3 was used to stabilize the model and prevent overfitting.
+Same penalization value as for simulated data above was used to stabilize the model and prevent overfitting.
 
 **Model Outcome Summary:**
 
