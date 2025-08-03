@@ -74,89 +74,11 @@ _________________________________________
 ---
 
 ### FL) cox time-varying with COX daily survival curve splot
-Phyton script [FL) cox time-varying survival curves daily.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FL%29%20cox%20time-varying%20survival%20curves%20daily.py)
-<br>
-<br>**Simulated data (expected HR~1 no effect = placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL%29%20cox%20time-varying%20survival%20curves%20daily/FL-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20cox%20time-varying.TXT)
-<br>With corrected distortion, the curves for vaccinated and unvaccinated individuals must overlap for the simulated data with HR~1!
-<br>**This proves that the used evaluation methode is bias-free.**
-<br>
-<br>
-<img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL%29%20cox%20time-varying%20survival%20curves%20daily/FL-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20cox%20time-varying.png width="1280" height="auto">
-<br>
-
-<br>**Vs. real Czech data** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL%29%20cox%20time-varying%20survival%20curves%20daily/FL%29%20Vesely_106_202403141131_AG70%20cox%20time-varying.TXT)
-<br>Czech FOI real data AG70 were evaluated identically to eliminate distortions.
-<br>**The result shows virtually no vaccine effectiveness (vaccinated and unvaccinated overlap)**
-<br>
-<br>
-<img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FL)%20cox%20time-varying%20survival%20curves%20daily/FL)%20Vesely_106_202403141131_AG70%20cox%20time-varying.png width="1280" height="auto">
-<br>
-_________________________________________
-
-### FL) CoX Time-Varying Survival Analysis Results:
-
-- **Study Period sart date 2020-01-01 until END_MEASURE 1095 days**
-
-**Notes**
-- The model uses **time-varying covariates** to avoid immortal time bias.
-- `vaccinated_time` allows modeling of **waning protection** over time.
----
-
-### Simulated Dataset (Simulated Deaths and real Dose schedule) - expected HR~1 no effect -> placebo
-
-This run evaluates a time-varying Cox proportional hazards model using **simulated homogen constant death events for whole population** with afterwards random assigned **real-world vaccination dose timing with constraint death day > last dose day applied** 
-(expected hazard ratio HR ≈ 1). The model used a COX_PENALIZER = 3, which was empirically determined to produce stable and unbiased estimates aligned with the known outcomme of the simulated data.
-
-**Model Outcome Summary:**
-
-| Covariate         | HR (exp(coef)) | 95% CI       | p-value   | Interpretation                                                         |
-|-------------------|----------------|--------------|-----------|----------------------------------------------------------------------- |
-| `vaccinated`      | 0.993          | 0.989–0.998  | 0.0029    | Slight apparent protective effect due to noise or still minimal bias   |
-| `vaccinated_time` | 1.000          | 1.000–1.000  | 3.5e-07   | Effect over time is negligible as expected                             |
-
-- **Deaths before vaccination + lag 0 :** 5496  
-- **Deaths after vaccination + lag 0 :** 2371  
-- **Life years saved:** ~0.0006 years (negligible, as expected)  
-- **Total deaths:** 7867  
-- **Event distribution:**  
-  - **Unvaccinated deaths:** 5496  
-  - **Vaccinated deaths:** 2371  
-<br>The results show that the model correctly detects **no meaningful difference in mortality risk** between vaccinated and unvaccinated individuals when using simulated deaths that are intentionally unrelated to vaccination. 
-This confirms that the model setup — including the chosen penalizer value — does **not introduce artificial vaccine effects** when none exist, ensuring valid and unbiased estimates under a neutral ground truth.
---
-
-### vs. Real-World Dataset Result (Czech FOI Deaths + Real Doses) for AG70
-
-This run applies exactly the same evaluation to **real-world data from the Czech Republic**, using actual vaccination dose dates and recorded all-cause deaths. 
-
-The model includes two covariates:
-- `vaccinated`: binary indicator for vaccination status
-- `vaccinated_time`: time since vaccination
-
-Same penalization value as for simulated data above was used.
-
-**Model Outcome Summary:**
-
-| Covariate         | HR (exp(coef)) | 95% CI       | p-value   | Interpretation                                                  |
-|-------------------|----------------|--------------|-----------|-----------------------------------------------------------------|
-| `vaccinated`      | 0.996          | 0.991–1.000  | 0.0717    | Slight protective trend, but **not statistically significant**  |
-| `vaccinated_time` | 1.000          | 1.000–1.000  | 2.0e-06   | Small decreasing effect over time, statistically significant    |
-
-- **Deaths before vaccination + lag:** 5131  
-- **Deaths after vaccination + lag:** 2706  
-- **Life years saved by vaccination:** ~0.0004 years  
-- **Total deaths:** 7837  
-- **Event distribution:**  
-  - **Unvaccinated deaths:** 5131  
-  - **Vaccinated deaths:** 2706  
-
-The results suggest **no meaningfull reduction in mortality hazard** following vaccination in AG70. While the main effect (`vaccinated`) is not statistically significant, 
-the direction aligns with a modest protective signal. The `vaccinated_time` covariate shows a statistically significant (though clinically minimal) decreasing hazard over time post-vaccination.
-
+**This script was removed - did contain a big error - produced overlapping uvx vx curves independend of HR rate**  
 _________________________________________
 
 ### FW) cox time-varying Methode with Kaplan–Meier (KM) survival curve plot
-Phyton script [FW) cox time-varying.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FW%29%20cox%20time-varying.py)
+Phyton script [FW) cox time-varying.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FW%29%20cox%20time-varying.py) **-> hasn't been checked for errors now**
 <br>
 <br>**Simulated data (expected HR~1 / no effect-placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FW%29%20cox%20time-varying/FW-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20AG70%20cox%20time-varying.TXT)
 <br>There is still a slight distortion, as vx and uvx should theoretically overlap. 
