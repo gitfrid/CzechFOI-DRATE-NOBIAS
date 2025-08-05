@@ -70,11 +70,11 @@ That means:
 
 _________________________________________
 ## Comparison vaccinated vs. unvaccinated with eliminated bias - using different Methodes  
-
+### I have not yet found a scientific Cox/Poisson method that completely eliminates the bias caused by the restriction “date of death > date of last dose” in order to fairly compare vaccinated and unvaccinated individuals and calculate efficacy.
 ---
 
 ### FL) cox time-varying with COX daily survival curve splot
-**This script was removed - did contain a big error - produced overlapping uvx vx curves independend of HR rate**  
+**This script was removed - did contain a error - produced overlapping uvx vx curves independend of HR rate**  
 _________________________________________
 
 ### FW) cox time-varying Methode with Kaplan–Meier (KM) survival curve plot
