@@ -74,7 +74,7 @@ _________________________________________
 ---
 
 ### FL) cox time-varying with COX daily survival curve splot
-**This script was removed - did contain a error - produced overlapping uvx vx curves independend of HR rate**  
+**This script was removed - as it did contain a error - produced alwayse overlapping uvx vx curves independend of HR rate**  
 _________________________________________
 
 ### FW) cox time-varying Methode with Kaplan–Meier (KM) survival curve plot
