@@ -70,7 +70,8 @@ That means:
 
 _________________________________________
 ## Comparison vaccinated vs. unvaccinated with eliminated bias - using different Methodes  
-### I have not yet found a scientific Cox/Poisson method that completely eliminates the bias caused by the restriction “date of death > date of last dose” in order to fairly compare vaccinated and unvaccinated individuals and calculate efficacy.
+### I have not yet found a scientific Cox/Poisson method that completely eliminates the bias caused by the restriction “date of death > date of last dose” in order to fairly compare vaccinated and unvaccinated individuals and calculate efficacy
+### Taking into account the distortion of the methods listed below, the effectiveness appears to be comparable to that of a placebo. Provided there are no code errors.
 ---
 
 ### Since most scientists use R code, I will shortly be publishing the R code scripts.
