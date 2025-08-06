@@ -73,8 +73,8 @@ _________________________________________
 ### I have not yet found a scientific Cox/Poisson method that completely eliminates the bias caused by the restriction “date of death > date of last dose” in order to fairly compare vaccinated and unvaccinated individuals and calculate efficacy.
 ---
 
-### FL) cox time-varying with COX daily survival curve splot
-**This script was removed - as it did contain a error - produced alwayse overlapping uvx vx curves independend of HR rate**  
+### Since most scientists use R code, I will shortly be publishing the R code scripts.
+
 _________________________________________
 
 ### FW) cox time-varying Methode with Kaplan–Meier (KM) survival curve plot
