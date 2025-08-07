@@ -34,11 +34,11 @@ _________________________________________
 
 I have not yet found a scientific Cox/Poisson time-varying Methode that completely eliminates the bias **caused by the restriction "date of death > date of last dose”** in order to fairly compare vaccinated and unvaccinated individuals and calculate efficacy.
 
-**Assuming that the bias in both data sets is comparable and both produce similar biased results, it follows that the true unbiased effect is negligible.**
+**Assuming that the bias in both data sets is comparable and both produce similar biased results, it follows that the true unbiased effect of vaccinated vs unvaccinated individuals is negligible.**
 
 <br>Methods such as the G-formula or target trial emulation with clone censoring weighting (CCW) should be able to correct this bias, but require in-depth knowledge to apply.
 Most scientific studies on this topic do not publish their data or the code used for the evaluation.
-<br>Since most scientists use R code, I will shortly be publishing the R code scripts.
+<br>Since most scientists use R code, I will shortly be publishing R-code scripts.
 _________________________________________
 
 ## The Solution of Non-Random Boundary Condition Bias
