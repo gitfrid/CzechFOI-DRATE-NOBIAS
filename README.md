@@ -32,12 +32,13 @@ This project draws heavily on those principles, applying them to large-scale rea
 _________________________________________
 ## Comparison vaccinated vs. unvaccinated with eliminated bias - using different Methodes  
 
-I have not yet found a scientific Cox/Poisson time-varying Methode that completely eliminates the bias caused by the restriction “date of death > date of last dose” in order to fairly compare vaccinated and unvaccinated individuals and calculate efficacy.
+I have not yet found a scientific Cox/Poisson time-varying Methode that completely eliminates the bias **caused by the restriction "date of death > date of last dose”** in order to fairly compare vaccinated and unvaccinated individuals and calculate efficacy.
 
 **Assuming that the bias in both data sets is comparable and both produce similar biased results, it follows that the true unbiased effect is negligible.**
 
-Since most scientists use R code, I will shortly be publishing the R code scripts.
-
+<br>Methods such as the G-formula or target trial emulation with clone censoring weighting (CCW) should be able to correct this bias, but require in-depth knowledge to apply.
+Most scientific studies on this topic do not publish their data or the code used for the evaluation.
+<br>Since most scientists use R code, I will shortly be publishing the R code scripts.
 _________________________________________
 
 ## The Solution of Non-Random Boundary Condition Bias
