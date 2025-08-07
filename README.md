@@ -12,7 +12,7 @@ This bias is particularly dangerous because it can produce **misleading conclusi
 A population with a 
 constant mortality rate is simulated, and real vaccine doses 1–7 are randomly assigned to individuals, repeating the process until the individual’s death day occurs after their last vaccination. 
 This creates a dataset with a constant homogeneous mortality rate and a realistic vaccination schedule.
-<br><br>The simulated and real datasets are then tested using scientific methods such as the time-varying Cox model to prove whether the methode eliminate this bias in the data, or produce distorted results.
+<br><br>The simulated and real dataset is then used with scientific methods such as the time-varying Cox model to prove whether the methode eliminate this bias in the data, or produce distorted results.
 
 ### Scientific Foundations
 
