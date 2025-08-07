@@ -30,6 +30,15 @@ This project draws heavily on those principles, applying them to large-scale rea
 [**See also CzechFOI-DRATE_EXAM project for Investigation of the Bias**](https://github.com/gitfrid/CzechFOI-DRATE_EXAM/tree/main)
 
 _________________________________________
+## Comparison vaccinated vs. unvaccinated with eliminated bias - using different Methodes  
+
+I have not yet found a scientific Cox/Poisson time-varying Methode that completely eliminates the bias caused by the restriction “date of death > date of last dose” in order to fairly compare vaccinated and unvaccinated individuals and calculate efficacy.
+
+**Assuming that the bias in both data sets is comparable and both produce similar biased results, it follows that the true unbiased effect is negligible.**
+
+Since most scientists use R code, I will shortly be publishing the R code scripts.
+
+_________________________________________
 
 ## The Solution of Non-Random Boundary Condition Bias
 
@@ -73,14 +82,7 @@ That means:
 - It doesn’t help to randomly assign doses only to the vaccinated group, as the bias is already introduced by real world constraint death day > last dose day.
 - If you randomly assigne the doses to the entire population, it would eliminate the bias — but this would destroy the real relation of vx/uvx grouping you actually want to compare.
 - Therefore, you need to find another way to eliminate the bias from the raw data — and **Hernán & Robins** showed how to do this.
-
-_________________________________________
-## Comparison vaccinated vs. unvaccinated with eliminated bias - using different Methodes  
-
-**I have not yet found a scientific Cox/Poisson time-varying Methode that completely eliminates the bias caused by the restriction “date of death > date of last dose” in order to fairly compare vaccinated and unvaccinated individuals and calculate efficacy**
-
-Since most scientists use R code, I will shortly be publishing the R code scripts.
-
+- 
 _________________________________________
 
 ### FW) cox time-varying Methode with Kaplan–Meier (KM) survival curve plot
