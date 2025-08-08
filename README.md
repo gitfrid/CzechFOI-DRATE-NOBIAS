@@ -32,7 +32,7 @@ This project draws heavily on those principles, applying them to large-scale rea
 _________________________________________
 ## Comparison vaccinated vs. unvaccinated with eliminated bias - using different Methodes  
 
-I have not yet found a scientific Cox/Poisson time-varying Methode that completely eliminates the bias **caused by the restriction "date of death > date of last dose”** in order to fairly compare vaccinated and unvaccinated individuals and calculate efficacy.
+I have not yet found a scientific Cox/Poisson method for temporal changes that completely eliminates the bias **caused by the restriction “date of death > date of last dose”**, which is inevitably present in the real observational data, in order to fairly compare vaccinated and unvaccinated individuals and calculate efficacy.
 
 **Assuming that the bias in both data sets is comparable and both produce similar biased results, it follows that the true unbiased effect of vaccinated vs unvaccinated individuals is negligible.**
 
