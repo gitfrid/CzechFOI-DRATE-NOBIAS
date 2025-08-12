@@ -10,7 +10,7 @@ This bias is particularly dangerous because it can produce **misleading conclusi
 
 ### Methode
 A population with a 
-constant mortality rate is simulated, and real vaccine doses 1–7 are randomly assigned to individuals, repeating the process until the individual’s death day occurs after their last vaccination. 
+constant mortality rate is simulated, and the real vaccine doses 1–7 are randomly assigned to individuals, repeating the process until the death day of the selected individual is after the last vaccination. 
 This creates a dataset with a constant homogeneous mortality rate and a realistic vaccination schedule.
 <br><br>The simulated (HR=1) and real dataset is then used with scientific methods such as the time-varying Cox model to prove whether the methode eliminate this bias in the data, or produce distorted results.
 
@@ -32,12 +32,12 @@ This project draws heavily on those principles, applying them to large-scale rea
 _________________________________________
 ## Comparison vaccinated vs. unvaccinated with eliminated bias - using different Methodes  
 
-I have not yet found a scientific Cox/Poisson time-varying Methode that completely eliminates the bias **caused by the restriction "date of death > date of last dose”** in order to fairly compare vaccinated and unvaccinated individuals and calculate efficacy.
+I have not yet found a scientific Cox/Poisson method that completely eliminates the bias **caused by the restriction “date of death > date of last dose”**, which is inevitably present in the real observational data, in order to fairly compare vaccinated and unvaccinated individuals and calculate efficacy.
 
 **Assuming that the bias in both data sets is comparable and both produce similar biased results, it follows that the true unbiased effect of vaccinated vs unvaccinated individuals is negligible.**
 
 <br>Methods such as the G-formula or target trial emulation with clone censoring weighting (CCW) should be able to correct this bias, but require in-depth knowledge to apply.
-Most scientific studies on this topic do not publish their data or the code used for the evaluation.
+Most scientific studies on this topic do not publish their data or the code used for evaluation, and probably use standard methods that do not correct for this bias.
 <br>Since most scientists use R code, I will shortly be publishing R-code scripts.
 _________________________________________
 
@@ -90,7 +90,7 @@ _________________________________________
 Phyton script [FW) cox time-varying.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FW%29%20cox%20time-varying.py) **-> hasn't been checked for errors now**
 <br>
 <br>**Simulated data (expected HR~1 / no effect-placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FW%29%20cox%20time-varying/FW-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20AG70%20cox%20time-varying.TXT)
-<br>There is still a slight distortion, as vx and uvx should theoretically overlap. 
+<br>There is still a slight distortion, as vx and uvx must theoretically overlap. 
 <br>
 <img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FW)%20cox%20time-varying/FW-FG)%20case3_sim_deaths_sim_real_doses_with_constraint%20AG70%20cox%20time-varying.png width="1280" height="auto">
 <br>
@@ -170,7 +170,7 @@ _________________________________________
 Phyton script [FZ) poisson.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FZ%29%20poisson.py)
 <br>
 <br>**Simulated data (expected HR~1 / no effect-placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FZ%29%20poisson/FZ-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20AG70%20poisson.TXT)
-<br>There is still a slight distortion, as vx and uvx should theoretically overlap horizontally. 
+<br>There is still a slight distortion, as vx and uvx must theoretically overlap horizontally. 
 <br>
 <img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FZ%29%20poisson/FZ-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20AG70%20poisson_KM_survival.png width="1280" height="auto">
 <br>
