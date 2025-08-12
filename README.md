@@ -87,7 +87,7 @@ That means:
 _________________________________________
 
 ### FW) cox time-varying Methode with Kaplan–Meier (KM) survival curve plot
-Phyton script [FW) cox time-varying.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FW%29%20cox%20time-varying.py) **-> hasn't been checked for errors now**
+Phyton script [FW) cox time-varying.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FW%29%20cox%20time-varying.py) [FW) cox time-varying.R](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/R%20Scripts/FG%29%20simulate%20deaths%20doses%20curves.R)**-> hasn't been checked for errors now**
 <br>
 <br>**Simulated data (expected HR~1 / no effect-placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FW%29%20cox%20time-varying/FW-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20AG70%20cox%20time-varying.TXT)
 <br>There is still a slight distortion, as vx and uvx must theoretically overlap. 
