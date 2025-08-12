@@ -11,7 +11,7 @@ This bias is particularly dangerous because it can produce **misleading conclusi
 ### Methode
 A population with a 
 constant mortality rate is simulated, and the real vaccine doses 1–7 are randomly assigned to individuals, repeating the process until the death day of the selected individual is after the last vaccination. 
-This creates a dataset with a constant homogeneous mortality rate and a realistic vaccination schedule.
+This creates a dataset with a constant homogeneous mortality rate and a realistic vaccination schedule. [FG) simulate deaths doses curves.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FG%29%20simulate%20deaths%20doses%20curves.py) [FG) simulate deaths doses curves.R](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/R%20Scripts/FG%29%20simulate%20deaths%20doses%20curves.R)
 <br><br>The simulated (HR=1) and real dataset is then used with scientific methods such as the time-varying Cox model to prove whether the methode eliminate this bias in the data, or produce distorted results.
 
 ### Scientific Foundations
@@ -87,7 +87,7 @@ That means:
 _________________________________________
 
 ### FW) cox time-varying Methode with Kaplan–Meier (KM) survival curve plot
-Phyton script [FW) cox time-varying.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FW%29%20cox%20time-varying.py) [FW) cox time-varying.R](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/R%20Scripts/FG%29%20simulate%20deaths%20doses%20curves.R)**-> hasn't been checked for errors now**
+Phyton script [FW) cox time-varying.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FW%29%20cox%20time-varying.py) **-> hasn't been checked for errors now**
 <br>
 <br>**Simulated data (expected HR~1 / no effect-placebo)** [Results TXT](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FW%29%20cox%20time-varying/FW-FG%29%20case3_sim_deaths_sim_real_doses_with_constraint%20AG70%20cox%20time-varying.TXT)
 <br>There is still a slight distortion, as vx and uvx must theoretically overlap. 
