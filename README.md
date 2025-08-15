@@ -235,7 +235,17 @@ _________________________________________
 - The **pseudo R² is low (0.0335)**, indicating that vaccination explains only a small portion of the variability in death counts.
 - The model converged after 5 iterations with valid diagnostics.
   
-____________________________________________________
+_________________________________________
+
+### FJ) observed versus bias adjusted KM death rate
+Phyton script [FJ) plot_death_rate_diff_age70_sim_vs_real.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FJ%29%20plot_death_rate_diff_age70_sim_vs_real.py) 
+<br>
+<br>Assuming that the bias of the simulated data set is approximately equal to the bias of the real data set - under the same boundary conditions, which is only an unproven hypothesis – then you could correct for this Bias as shown below.
+<br>
+<img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FJ%29%20bias%20vs%20observed%20vs%20adjusted%20KM%20death%20rate/AG70_bias_vs_observed_vs_adjusted_KM_death_rate.png width="1280" height="auto">
+<br>
+
+________________________________________
 
 ## Essentials to Eliminate the Bias
 
