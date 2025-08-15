@@ -244,9 +244,9 @@ Phyton script [FJ) plot_death_rate_diff_age70_sim_vs_real.py](https://github.com
 <br>
 <br>The horizontal line at y=0 would show a placebo (mortality rate uvx=vx, HR=1), as in the simulated dataset, without the bias introduced by constraint "death day > last dose day"
 <br>
-<br>**Bias Baseline (grey):** Effect of the simulated dataset assuming a constant homogeneous death rate (HR = 1), used as baseline.
-<br>**Observed Effect (blue):** Effect measured from the real dataset.
-<br>**Adjusted Effect (green):** Bias-adjusted effect, computed as the difference between the observed effect and the bias from the simulated dataset
+<br>**Bias Baseline (grey):** Effect in the simulated dataset with constant, homogeneous death rate (HR=1), including the inherent bias.
+<br>**Observed Effect (blue):** Effect measured from the real dataset, including the same bias.
+<br>**Adjusted Effect (green):** Bias-adjusted effect, calculated as the difference between the observed effect and the simulated baseline effect.
 <br>
 <br>
 <img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FJ%29%20bias%20vs%20observed%20vs%20adjusted%20KM%20death%20rate/AG70_bias_vs_observed_vs_adjusted_KM_death_rate.png width="1280" height="auto">
