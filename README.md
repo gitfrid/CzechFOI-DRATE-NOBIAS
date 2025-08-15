@@ -240,14 +240,18 @@ _________________________________________
 ### FJ) observed versus bias adjusted KM death rate
 Phyton script [FJ) plot_death_rate_diff_age70_sim_vs_real.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FJ%29%20plot_death_rate_diff_age70_sim_vs_real.py) 
 <br>
-<br>Assuming that the bias of the simulated data set is approximately equal to the bias of the real data set - under the same boundary conditions (which is an unproven hypothesis) then you could correct for this Bias.
+<br>Assuming that the bias of the simulated data set is approximately equal to the bias of the real data set - under the same boundary conditions (which is an unproven hypothesis) then you can correct for this Bias.
 <br>
-<br>The horizontal line at y=0 would show a placebo (mortality rate uvx=vx, HR=1), as in the simulated dataset, without the bias introduced by constraint "death day > last dose day"
-<br>
+<p>The <strong>y value</strong> in the plot represents the relative effect of vaccination on the death rate between the vaccinated (vx) and unvaccinated (uvx) groups.</p>
+<ul>
+  <li><strong>Positive y value:</strong> The death rate is higher in the vaccinated group than in the unvaccinated group.</li>
+  <li><strong>Negative y value:</strong> The death rate is higher in the unvaccinated group than in the vaccinated group.</li>
+  <li><strong>y = 0:</strong> Death rates are equal (HR = 1), meaning no observed effect as in the simulated placebo dataset, but without the bias introduced by constraint "death day > last dose day</li>
+</ul>
+
 <br>**Bias Baseline (grey):** Effect in the simulated dataset with constant, homogeneous death rate (HR=1), including the inherent bias.
 <br>**Observed Effect (blue):** Effect measured from the real dataset, including the same bias.
 <br>**Adjusted Effect (green):** Bias-adjusted effect, calculated as the difference between the observed effect and the simulated baseline effect.
-<br>
 <br>
 <img src=https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Plot%20Results/FJ%29%20bias%20vs%20observed%20vs%20adjusted%20KM%20death%20rate/AG70_bias_vs_observed_vs_adjusted_KM_death_rate.png width="1280" height="auto">
 <br>
