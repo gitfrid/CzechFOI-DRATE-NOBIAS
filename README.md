@@ -245,7 +245,7 @@ Assuming that the bias of the simulated dataset is approximately equal to the bi
 
 - **Interpretation of y-values:**  
   A y-value of 100 µ means the vaccinated group has 0.01% lower (if negative) or higher (if positive) daily death probability compared to the unvaccinated group.
-  For 100k people alive (at risk) that day, a daily difference of 100 µ corresponds to a difference of 10 people that day.
+  For 100k people alive (at risk) AG70 that day, a daily difference of 100 µ corresponds to a difference of 10 people that day.
 
 - **Reference line:**  
   **y = 0:** Death rates are equal (HR = 1), meaning no observed effect (placebo), as in the simulated dataset—but without the bias introduced by the constraint `death_day > last_dose_day`.
