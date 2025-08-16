@@ -242,7 +242,8 @@ Phyton script [FJ) plot_death_rate_diff_age70_sim_vs_real.py](https://github.com
 <br>
 <br>Assuming that the bias of the simulated data set is approximately equal to the bias of the real data set - under the same boundary conditions (which is an unproven hypothesis) then you can correct for this Bias.
 <ul>
-<li>A y-value of 100 µ means the vaccinated group has 0.01% lower (if negative) or higher (if positive) daily death probability compared to the unvaccinated group.</p>
+<li>A y-value of 100 µ means the vaccinated group has 0.01% lower (if negative) or higher (if positive) daily death probability compared to the unvaccinated group.
+<li>For 100k people, a daily difference of 100µ corresponds to 10 people per day.
 <li><strong>y = 0:</strong> Death rates are equal (HR = 1), meaning no observed effect (placebo) as in the simulated dataset, but without the bias introduced by constraint "death day > last dose day</li>
 </ul>
 
