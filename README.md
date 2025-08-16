@@ -208,7 +208,8 @@ _________________________________________
 
 ### Interpretation
 
-- **No difference** in death incidence between vaccinated and unvaccinated individuals was detected in this simulation.
+- **No difference in death incidence between vaccinated and unvaccinated individuals** was detected in this simulation.
+  **It seems the Possion regeression removed the bais perfect from the simulated Dataset** (HR=1 with real doase schedule). 
 - The coefficient for `vaccinated` is extremely close to zero, with an **Incidence Rate Ratio (IRR) of 1.000**, meaning **no relative change in death rate**.
 - **Perfect separation** warning suggests either:
   - There is no variation in the outcome with respect to predictors.
