@@ -13,7 +13,9 @@ A population with a
 constant mortality rate is simulated, and the real vaccine doses 1–7 are randomly assigned to individuals, repeating the process until the death day of the selected individual is after the last vaccination. 
 This creates a dataset with a constant homogeneous mortality rate and a realistic vaccination schedule. [FG) simulate deaths doses curves.py](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/Py%20Scripts/FG%29%20simulate%20deaths%20doses%20curves.py) [FG) simulate deaths doses curves.R](https://github.com/gitfrid/CzechFOI-DRATE-NOBIAS/blob/main/R%20Scripts/FG%29%20simulate%20deaths%20doses%20curves.R)
 <br><br>The simulated (HR=1) and real dataset is then used with scientific methods such as the time-varying Cox model to prove whether the methode eliminate this bias in the data, or produce distorted results.
-<br>**Perhaps a mistake in the simulation is that I looke into future deaths in order to decide on the allocation, which is not possible in reality?**
+<br><br>**One potential flaw in the simulation is that it looks into the future when assigning doses (as Miguel Hernán warned), and which is not possible in reality. 
+This leads to a type of bias that cannot be eliminated using standard scientific methods.**
+<br><br>**I will soon upload a new project that uses a simulation without relying on future information, allowing standard scientific methods to properly control for this bias.**
 
 ### Scientific Foundations
 
